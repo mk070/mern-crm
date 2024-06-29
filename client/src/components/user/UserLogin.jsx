@@ -37,7 +37,7 @@ const UserLogin = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		
-			const url = "http://localhost:5000/api/user_auth";
+			const url = `${process.env.REACT_APP_API_URL}/api/user_auth`;
 			try {
 				const { data: res } = await axios.post(url, data);
 				

@@ -43,7 +43,7 @@ const EmployeeSignup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:5000/api/employee";
+			const url = `${process.env.REACT_APP_API_URL}/api/employee`;
 			const { data: res } = await axios.post(url, data);
 			navigate("/otherdetails");
 			console.log(res.message);

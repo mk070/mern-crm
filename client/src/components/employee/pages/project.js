@@ -41,7 +41,7 @@ const ProjectDetails = () => {
           const userId = user._id;
 
           // Fetch projects associated with the user ID
-          const response = await axios.get(`http://localhost:5000/api/project/assigned-projects/${userId}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/project/assigned-projects/${userId}`);
           setProjects(response.data);
         }
       } catch (error) {

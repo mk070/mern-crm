@@ -69,7 +69,7 @@ const PDFViewer = () => {
         const fetchPDFUrl = async () => {
             try {
                 if (userId) {
-                    const response = await axios.get(`http://localhost:5000/api/assign/pdf/${userId}`, {
+                    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/assign/pdf/${userId}`, {
                         responseType: 'blob'
                     });
                     const pdfBlob = new Blob([response.data], { type: 'application/pdf' });

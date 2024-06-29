@@ -39,7 +39,7 @@ const EmployeeLogin = () => {
 		e.preventDefault();
 	
 		// Assuming `data` is defined elsewhere in your component to include the user credentials
-		const url = "http://localhost:5000/api/employee_auth";
+		const url = `${process.env.REACT_APP_API_URL}/api/employee_auth`;
 	
 		try {
 			const { data: res } = await axios.post(url, data);

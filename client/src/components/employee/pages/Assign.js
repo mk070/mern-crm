@@ -31,7 +31,7 @@ function Assign() {
         const fetchEmployeeDetails = async () => {
             try {
                 if (profileId) {
-                    const response = await axios.get(`http://localhost:5000/api/assign/${profileId}`);
+                    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/assign/${profileId}`);
                     setEmployeeDetails(response.data);
                     setLoading(false);
                 }

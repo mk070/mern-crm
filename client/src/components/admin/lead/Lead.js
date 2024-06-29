@@ -48,7 +48,7 @@ function Lead() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/lead/lead/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/lead/lead/${id}`);
       fetchUsers();
     } catch (err) {
       console.error('Failed to delete lead:', err);

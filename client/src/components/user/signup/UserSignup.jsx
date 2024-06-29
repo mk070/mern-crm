@@ -48,7 +48,7 @@ const UserSignup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:5000/api/users";
+			const url = `${process.env.REACT_APP_API_URL}/api/users`;
 			const { data: res } = await axios.post(url, data);
 			navigate("/product");
 			console.log(res.message);
