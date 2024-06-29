@@ -21,7 +21,7 @@ const AssignProjectForm = () => {
     // Fetch employees when component mounts
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/project/emp');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/project/emp`);
         setEmployees(response.data);
       } catch (error) {
         console.error('Error fetching employees:', error);
@@ -39,7 +39,7 @@ const AssignProjectForm = () => {
       // Extract the _id of the selected employee
       const selectedEmployeeId = selectedEmployee ? selectedEmployee._id : null;
   
-      await axios.post('http://localhost:5000/api/project/assign-project', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/project/assign-project`, {
         projectName,
         projectDescription,
         assignedEmployee: selectedEmployeeId, // Pass the _id of the selected employee

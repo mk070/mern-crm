@@ -29,7 +29,7 @@ const QueryForm = ({ setQueries }) => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/query', { query });
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/query`, { query });
       setMessage('Query submitted successfully!');
       setQuery('');
     } catch (error) {

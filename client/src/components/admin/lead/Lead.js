@@ -21,7 +21,7 @@ function Lead() {
   }, []);
 
   const fetchUsers = async () => {
-    const response = await axios.get('http://localhost:5000/api/lead/lead');
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/lead/lead`);
     setUsers(response.data);
   };
 
@@ -32,9 +32,9 @@ function Lead() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (currentUser) {
-      await axios.put(`http://localhost:5000/api/lead/lead/${currentUser._id}`, form);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/lead/lead/${currentUser._id}`, form);
     } else {
-      await axios.post('http://localhost:5000/api/lead/lead', form);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/lead/lead`, form);
     }
     setForm({ sno: '', name: '', email: '', phone: '', address: '', source: '' });
     setCurrentUser(null);

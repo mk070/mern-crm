@@ -15,7 +15,7 @@ function UserDetailsComponent() {
  useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/userdetails/userdetails');
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/userdetails/userdetails`);
                 setData(response.data);
                 setLoading(false);
             } catch (error) {

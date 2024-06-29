@@ -38,7 +38,7 @@ function Count() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/count');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/count`);
         setUserCount(response.data.userCount);
       } catch (error) {
         console.error('Error fetching user count:', error);
@@ -46,7 +46,7 @@ function Count() {
       }
 
       try {
-        const response = await axios.get('http://localhost:5000/api/clientcount');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/clientcount`);
         setClientCount(response.data.clientCount);
       } catch (error) {
         console.error('Error fetching client count:', error);
@@ -54,7 +54,7 @@ function Count() {
       }
 
       try {
-        const response = await axios.get('http://localhost:5000/api/taskcount');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/taskcount`);
         setTaskCount(response.data.taskCount);
       } catch (error) {
         console.error('Error fetching task count:', error);
@@ -63,7 +63,7 @@ function Count() {
 
      
       try {
-        const response = await axios.get('http://localhost:5000/api/taskcount/leadcount');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/taskcount/leadcount`);
         setLeadCount(response.data.leadCount);
       } catch (error) {
         console.error('Error fetching task count:', error);
@@ -71,7 +71,7 @@ function Count() {
       }
 
       try {
-        const response = await axios.get('http://localhost:5000/api/taskcount/querycount');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/taskcount/querycount`);
         setQueryCount(response.data.queryCount);
       } catch (error) {
         console.error('Error fetching task count:', error);

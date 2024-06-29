@@ -103,7 +103,7 @@ function OtherDetails() {
                 dob: details.dob.toISOString(),
                 doj: details.doj.toISOString()
             };
-            const response = await axios.post('http://localhost:5000/api/otherdetails', formattedDetails);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/otherdetails`, formattedDetails);
             console.log('Details submitted:', response.data);
             setError(null);
             navigate('/employeelogin');

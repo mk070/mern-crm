@@ -31,7 +31,7 @@ function RegisterAdmin() {
 
         setMessage('');
         try {
-            const response = await axios.post('http://localhost:5000/api/addadmin/register-admin', {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/addadmin/register-admin`, {
                 id: formData.id,
                 name: formData.name,
                 email: formData.email,

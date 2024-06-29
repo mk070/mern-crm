@@ -70,8 +70,8 @@ function UploadPDF() {
         formData.append('userId', userId);
     
         try {
-            const uploadResponse = await axios.post('http://localhost:5000/api/assign/upload', formData);
-            await axios.post('http://localhost:5000/api/assign/assignClients', {
+            const uploadResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/assign/upload`, formData);
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/assign/assignClients`, {
                 employeeId: userId,
                 clientIds: clientIds
             });
@@ -90,7 +90,7 @@ function UploadPDF() {
     const fetchEmployeeDetails = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/assign/empdetails');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/assign/empdetails`);
             setEmployees(response.data);
         } catch (error) {
             console.error('Failed to fetch employee details:', error);
@@ -103,7 +103,7 @@ function UploadPDF() {
     const fetchClientDetails = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/assign/clients');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/assign/clients`);
             setClients(response.data);
         } catch (error) {
             console.error('Failed to fetch clients:', error);
