@@ -5,7 +5,7 @@ import BackgroundImage from '../../home/1.jpg'
 import ProfileImage from './teamwork.png';
 const AnimatedBackground = styled.div`
   min-height: 100vh;
-  background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8)), url(${BackgroundImage}) no-repeat center center fixed;
+  background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8));
   background-size: cover;
 `;
 

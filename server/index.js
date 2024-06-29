@@ -45,6 +45,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Server running");
+});
 
 // routes
 app.use("/api/users", userRoutes);
@@ -68,7 +71,7 @@ app.use("/api/product",Product)
 app.use("/api/project",Project)
 
 app.listen(`${process.env.PORT}` ,()=>{
-  console.log(`Server is Running on ${process.env.PORT}`);
+  console.log(`Server is Running on at http://localhost:${process.env.PORT}`);
 });
 
 

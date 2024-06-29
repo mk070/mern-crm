@@ -104,7 +104,7 @@ function App() {
       <Route path='/uploadpdf' element={<UploadPDF/>}/>
       <Route path='/project' element={<ProjectAssignForm/>}/>
       <Route path='/calendar' element={<Calendar/>}/>
-      <Route path='/' element={<CRMLogin/>}/>
+      <Route path='/' element={<HomePage />}/>
 
       
       <Route path='/profile' element={<Profile/>}/>
