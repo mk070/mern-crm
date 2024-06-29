@@ -68,7 +68,7 @@ const Editor = () => {
     
         // Create a title element
         const titleElement = document.createElement('div');
-        titleElement.innerText = 'ARISTOSTECH PVT LTD'; // Set your title text
+        titleElement.innerText = 'Varloom PVT LTD'; // Set your title text
         titleElement.style.fontWeight = 'bold'; // Make the title text bold
         titleElement.style.textAlign = 'center';
         titleElement.style.fontSize = '24px'; // Adjust the font size as needed

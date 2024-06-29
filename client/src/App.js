@@ -33,15 +33,13 @@ import RegisterAdmin from "./components/admin/add/registeradmin";
 import UploadPDF from "./components/admin/employeedetails/uploadpdf";
 import Navbar from "./components/employee/Navbar";
 import EmployeeHome from "./components/employee/pages/employeehome";
-import QueryForm from "./components/employee/pages/queries";
 
 import Profile from "./components/employee/pages/profile";
 import OtherDetails from "./components/employee/profile/otherdetails";
 import ClientNavbar from "./components/user/clientnavbar";
 import ClientProfile from "./components/user/pages/clientprofile";
 import ClientHome from "./components/user/pages/clienthome";
-import ClientQueryForm from "./components/user/pages/clientquery";
-import QueryList from "./components/admin/query/querydisplay";
+
 import ProductForm from "./components/user/proddetails";
 import ProjectAssignForm from "./components/admin/project/project";
 import ProjectDetails from "./components/employee/pages/project";
@@ -102,7 +100,6 @@ function App() {
       <Route path='/userdetails' element={<UserDetailsComponent/>}/>
       <Route path='/proposal' element={<Editor/>}/>
       <Route path='/invoice' element={<InvoiceForm/>}/> 
-      <Route path='/querydisplay' element={<QueryList/>}/> 
       <Route path='/addadmin' element={<RegisterAdmin/>}/>
       <Route path='/uploadpdf' element={<UploadPDF/>}/>
       <Route path='/project' element={<ProjectAssignForm/>}/>
@@ -118,14 +115,12 @@ function App() {
       <Route path='/nav' element={<Navbar/>}/>
       <Route path='/pdf' element={<PDFViewer/>}/>
       <Route path='/employeehome' element={<EmployeeHome/>}/>
-      <Route path='/query' element={<QueryForm/>}/>
       <Route path='/projectdetails' element={<ProjectDetails/>}/>
        
       <Route path='/clientnavbar' element={<ClientNavbar/>}/>
       <Route path='/clientprofile' element={<ClientProfile/>}/>
       <Route path='/clienthome' element={<ClientHome/>}/>
       <Route path='/clientprofile' element={<ClientProfile/>}/>
-      <Route path='/clientquery' element={<ClientQueryForm/>}/>
       <Route path='/product' element={<ProductForm/>}/>
     </Routes> 
     </ErrorBoundary> 

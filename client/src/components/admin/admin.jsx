@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import styles from './styles.module.css';
 import { AppBar, Toolbar, Container } from "@mui/material";
 import styled from 'styled-components';
-import BackgroundImage from '../home/1.jpg'
+// import BackgroundImage from '../home/1.jpg'
 // import logoImage from '/logo.png'; 
 
 const AnimatedBackground = styled.div`
-		min-height: 100vh;background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8)), url(${BackgroundImage}) no-repeat center center fixed;background-size: cover;`;
+		min-height: 100vh;background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8))`;
 
 		const StartButton = styled.button`
   font-size: 1.0rem;
@@ -38,7 +38,8 @@ const AdminLogin = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:5000/api/admin_auth";
+			const url = `${process.env.REACT_APP_API_URL}/api/admin_auth`;
+  			console.log(url); // 
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
 			window.location = "/dashboard";

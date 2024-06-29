@@ -123,7 +123,7 @@ function Count() {
 
   return (
     <>
-      <div className="app">
+      <div className="app" style={{overflow:'hidden'}}>
         <Side isSidebar={isSidebar}/>
         <main className="content">
           <Box
@@ -178,7 +178,7 @@ function Count() {
                 </Typography>
               </CardContent>
             </StyledCard>
-            <StyledCard>
+            {/* <StyledCard>
               <CardContent>
                 <Typography sx={{ fontSize: 20 }} gutterBottom>
                   Query count
@@ -187,9 +187,9 @@ function Count() {
                   {queryCount}
                 </Typography>
               </CardContent>
-            </StyledCard>
+            </StyledCard> */}
           </Box>
-          <Box style={{ display: 'flex', flexDirection: 'row', gap: '5px', marginTop: '150px',marginLeft: '0px' }}>
+          <Box style={{ display: 'flex', flexDirection: 'row', gap: '5px', marginTop: '150px',marginLeft: '0px',width:"90%" }}>
             <ResponsiveContainer width="30%" height={200}>
               <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />

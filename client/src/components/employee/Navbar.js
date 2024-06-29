@@ -93,7 +93,7 @@ function Navbar() {
             <Button color="inherit" component={Link} to="/assign">Clients</Button>
             <Button color="inherit" component={Link} to="/task">Task</Button>
             <Button color="inherit" component={Link} to="/projectdetails">Project</Button>
-            <Button color="inherit" component={Link} to="/query">Query</Button>
+            {/* <Button color="inherit" component={Link} to="/query">Query</Button> */}
             <Button color="inherit" component={Link} to="/profile">Profile</Button>
             <Button color="inherit" component={Link} to="/">Logout</Button>
           </Toolbar>

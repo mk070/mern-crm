@@ -5,9 +5,9 @@ import styles from "./styles.module.css";
 // import logoImage from './whatsapp-image-20240123-at-1705-1@2x.png'; 
 import { AppBar, Toolbar, Container } from "@mui/material";
 import styled from 'styled-components';
-import BackgroundImage from '../home/1.jpg'
+// import BackgroundImage from '../home/1.jpg'
 const AnimatedBackground = styled.div`
-		min-height: 100vh;background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8)), url(${BackgroundImage}) no-repeat center center fixed;background-size: cover;`;
+		min-height: 100vh;background: linear-gradient(to bottom, rgb(255, 255, 128), rgba(146, 239, 253, 0.8))`;
 
 		const StartButton = styled.button`
   font-size: 1.0rem;
