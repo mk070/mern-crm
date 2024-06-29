@@ -143,7 +143,7 @@ function EmployeeDetailsCards({ data }) {
         return;
       }
     
-      fetch(`http://localhost:5000/api/task/tasks`, {
+      fetch(`${process.env.REACT_APP_API_URL}/api/task/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
