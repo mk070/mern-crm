@@ -67,8 +67,8 @@ app.use("/api/query",Query)
 app.use("/api/product",Product)
 app.use("/api/project",Project)
 
-app.listen(5000 || 8000 ,()=>{
-  console.log("Server is Running on 5000");
+app.listen(`${process.env.PORT}` ,()=>{
+  console.log(`Server is Running on ${process.env.PORT}`);
 });
 
 
