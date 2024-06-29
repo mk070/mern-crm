@@ -1,0 +1,380 @@
+.crmLoginChild {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.parentFrameChild {
+  height: 1024px;
+  width: 300px;
+  position: relative;
+  background: linear-gradient(180deg, red 43.64%, #9f02ff);
+  display: none;
+  mix-blend-mode: normal;
+}
+.whatsappImage20240123At1 {
+  
+    position: absolute;
+    background-color: linear-gradient(180deg, red 43.64%, #9f02ff);
+    top: 0;
+    left: 5%;
+    width: 100px; /* Set the width of your logo */
+    height: 100px; /* Set the height of your logo */
+    
+    
+}
+.parentFrame {
+  height: 1024px;
+  width: 300px;
+  background: linear-gradient(180deg,#adadad 43.64%, #d2dbe7);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 61px var(--padding-16xl);
+  box-sizing: border-box;
+}
+.crmLogin1 {
+  margin: 0;
+  height: 90px;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+  align-items: center;
+}
+.fourthLevelFrame {
+  width: 407px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-17xl) 0 var(--padding-xl);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.fifteenthLevelRectangle {
+  width: 100%;
+  position: absolute;
+  margin: 0 !important;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  border-radius: var(--br-11xl);
+  background: linear-gradient(0deg, #a1a6ac, #5658bd);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.downloadRemovebgPreview1 {
+  height: 161.9px;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  z-index: 1;
+}
+.sixteenthLevelFrame {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 0 17px;
+}
+.eighteenthLevelTextChild {
+  height: 59px;
+  width: 187px;
+  position: relative;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-black);
+  display: none;
+}
+.client {
+  height: 52px;
+  flex: 1;
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 2;
+}
+.eighteenthLevelText {
+  align-self: stretch;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-black);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--padding-8xs) 18px var(--padding-11xs) var(--padding-16xl);
+  z-index: 1;
+}
+.fourteenthLevelFrame {
+  flex: 0.806;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-17xl) 60px var(--padding-33xl) var(--padding-35xl);
+  box-sizing: border-box;
+  position: relative;
+  gap: 24px;
+  min-width: 226px;
+}
+.seventhLevelFrameChild {
+  width: calc(100% - 8px);
+  position: absolute;
+  margin: 0 !important;
+  height: 100%;
+  top: 0;
+  right: 8px;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-11xl);
+  background: linear-gradient(180deg, #ec001c, #eb00ff);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.adminRemovebgPreview1Icon {
+  height: 190px;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  z-index: 1;
+}
+.adminRemovebgPreview1Wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-8xs) 0 16px;
+}
+.eleventhLevelRectangleChild {
+  height: 59px;
+  width: 187px;
+  position: relative;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-black);
+  display: none;
+}
+.admin {
+  height: 54px;
+  flex: 1;
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 2;
+}
+.eleventhLevelRectangle,
+.seventhLevelFrame {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.eleventhLevelRectangle {
+  width: 187px;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-black);
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 3px 19px var(--padding-11xs) var(--padding-17xl);
+  z-index: 1;
+}
+.seventhLevelFrame {
+  flex: 0.8159;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--padding-9xl) 59px var(--padding-33xl) var(--padding-35xl);
+  position: relative;
+  gap: 3px;
+  min-width: 231px;
+}
+.seventhLevelFrameItem {
+  width: 100%;
+  position: absolute;
+  margin: 0 !important;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-11xl);
+  background: linear-gradient(180deg, #ec001c, #eb00ff);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.logimgRemovebgPreview2Icon {
+  height: 177px;
+  width: 180px;
+  position: relative;
+  object-fit: cover;
+  z-index: 1;
+}
+.logimgRemovebgPreview2Wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 29px 0 22px;
+}
+.frameChild {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-black);
+  z-index: 1;
+}
+.employee {
+  height: 48px;
+  width: 211px;
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  flex-shrink: 0;
+  z-index: 2;
+  margin-left: -204px;
+  cursor: pointer;
+}
+.rectangleParent,
+.seventhLevelFrame1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangleParent {
+  align-self: stretch;
+  height: 59px;
+  flex-direction: row;
+}
+.seventhLevelFrame1 {
+  flex: 1;
+  flex-direction: column;
+  padding: var(--padding-9xl) 31px var(--padding-35xl) 38px;
+  box-sizing: border-box;
+  position: relative;
+  gap: 14px;
+  min-width: 226px;
+}
+.sixthLevelFrame,
+.thirdLevelFrame {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+}
+.sixthLevelFrame {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 61px;
+  font-size: var(--font-size-21xl);
+  color: var(--color-white);
+}
+.thirdLevelFrame {
+  flex-direction: column;
+  align-items: center;
+  gap: 102px;
+  max-width: 100%;
+  text-align: left;
+  font-size: 60px;
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
+.crmLogin,
+.thirdLevelFrameWrapper {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.thirdLevelFrameWrapper {
+  width: 1031px;
+  flex-direction: column;
+  padding: 192px 0 0;
+  max-width: 100%;
+}
+.crmLogin {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  border: 1px solid #ff9292;
+  overflow: hidden;
+  flex-direction: row;
+  gap: 50px;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1300px) {
+  .crmLogin {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1125px) {
+  .sixthLevelFrame {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .thirdLevelFrame {
+    gap: 51px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .crmLogin1 {
+    font-size: 48px;
+  }
+  .admin,
+  .client,
+  .employee {
+    font-size: var(--font-size-13xl);
+  }
+  .sixthLevelFrame {
+    gap: 15px;
+  }
+  .thirdLevelFrame {
+    gap: var(--gap-6xl);
+  }
+  .thirdLevelFrameWrapper {
+    padding-top: 125px;
+    box-sizing: border-box;
+  }
+  .crmLogin {
+    gap: var(--gap-6xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .crmLogin1 {
+    font-size: 36px;
+  }
+  .client {
+    font-size: var(--font-size-5xl);
+  }
+  .fourteenthLevelFrame {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+    flex: 1;
+  }
+  .admin {
+    font-size: var(--font-size-5xl);
+  }
+  .seventhLevelFrame {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+    flex: 1;
+  }
+  .employee {
+    font-size: var(--font-size-5xl);
+  }
+}
