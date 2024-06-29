@@ -1,0 +1,246 @@
+[debug] [2024-06-29T06:36:48.731Z] ----------------------------------------------------------------------
+[debug] [2024-06-29T06:36:48.735Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-29T06:36:48.736Z] CLI Version:   11.21.0
+[debug] [2024-06-29T06:36:48.736Z] Platform:      win32
+[debug] [2024-06-29T06:36:48.736Z] Node Version:  v20.14.0
+[debug] [2024-06-29T06:36:48.737Z] Time:          Sat Jun 29 2024 12:06:48 GMT+0530 (India Standard Time)
+[debug] [2024-06-29T06:36:48.737Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-29T06:36:48.742Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-06-29T06:36:48.810Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-29T06:36:48.811Z] > authorizing via signed-in user (mkartsoffical@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\web development\crm\client
+
+[debug] [2024-06-29T06:36:49.904Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-06-29T06:36:49.905Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-06-29T06:37:02.876Z] > refreshing access token with scopes: []
+[debug] [2024-06-29T06:37:02.877Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-06-29T06:37:02.877Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-06-29T06:37:03.340Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-06-29T06:37:03.341Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-06-29T06:37:03.349Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-06-29T06:37:03.349Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"crm","name":"crm"}
+[debug] [2024-06-29T06:37:05.078Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2024-06-29T06:37:05.079Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"},{"field":"display_name","description":"project display name must be at least 4 characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2024-06-29T06:37:10.088Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-06-29T06:37:28.900Z] ----------------------------------------------------------------------
+[debug] [2024-06-29T06:37:28.902Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-29T06:37:28.903Z] CLI Version:   11.21.0
+[debug] [2024-06-29T06:37:28.903Z] Platform:      win32
+[debug] [2024-06-29T06:37:28.903Z] Node Version:  v20.14.0
+[debug] [2024-06-29T06:37:28.903Z] Time:          Sat Jun 29 2024 12:07:28 GMT+0530 (India Standard Time)
+[debug] [2024-06-29T06:37:28.903Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-29T06:37:28.909Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-29T06:37:28.910Z] > authorizing via signed-in user (mkartsoffical@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\web development\crm\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-06-29T06:37:41.081Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-06-29T06:37:41.082Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"mern-crm","name":"mern-crm"}
+[debug] [2024-06-29T06:37:42.683Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2024-06-29T06:37:42.683Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2024-06-29T06:37:43.013Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID mern-crm. Please try again with a unique project ID.
+[debug] [2024-06-29T06:38:52.020Z] ----------------------------------------------------------------------
+[debug] [2024-06-29T06:38:52.022Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-29T06:38:52.023Z] CLI Version:   11.21.0
+[debug] [2024-06-29T06:38:52.023Z] Platform:      win32
+[debug] [2024-06-29T06:38:52.023Z] Node Version:  v20.14.0
+[debug] [2024-06-29T06:38:52.023Z] Time:          Sat Jun 29 2024 12:08:52 GMT+0530 (India Standard Time)
+[debug] [2024-06-29T06:38:52.024Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-29T06:38:52.031Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-29T06:38:52.031Z] > authorizing via signed-in user (mkartsoffical@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\web development\crm\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-06-29T06:39:22.060Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-06-29T06:39:22.061Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"crm-mern","name":"crm-mern"}
+[debug] [2024-06-29T06:39:23.646Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2024-06-29T06:39:23.646Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2024-06-29T06:39:23.968Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID crm-mern. Please try again with a unique project ID.
+[debug] [2024-06-29T06:39:32.845Z] ----------------------------------------------------------------------
+[debug] [2024-06-29T06:39:32.849Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-29T06:39:32.850Z] CLI Version:   11.21.0
+[debug] [2024-06-29T06:39:32.850Z] Platform:      win32
+[debug] [2024-06-29T06:39:32.850Z] Node Version:  v20.14.0
+[debug] [2024-06-29T06:39:32.850Z] Time:          Sat Jun 29 2024 12:09:32 GMT+0530 (India Standard Time)
+[debug] [2024-06-29T06:39:32.850Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-29T06:39:32.859Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-29T06:39:32.860Z] > authorizing via signed-in user (mkartsoffical@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\web development\crm\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-06-29T06:40:29.004Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-06-29T06:40:29.005Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"morden-crm","name":"morden-crm"}
+[debug] [2024-06-29T06:40:36.036Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2024-06-29T06:40:36.037Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/cp.6680711810315062511"}
+[debug] [2024-06-29T06:40:36.038Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6680711810315062511 [none]
+[debug] [2024-06-29T06:40:40.008Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6680711810315062511 200
+[debug] [2024-06-29T06:40:40.008Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6680711810315062511 {"name":"operations/cp.6680711810315062511","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"847488926433","projectId":"morden-crm","lifecycleState":"ACTIVE","name":"morden-crm","createTime":"2024-06-29T06:40:41.712824Z"}}
+[debug] [2024-06-29T06:40:40.010Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/morden-crm:addFirebase [none]
+[debug] [2024-06-29T06:40:55.026Z] Timeout reached making request to https://firebase.googleapis.com/v1beta1/projects/morden-crm:addFirebase
+[debug] [2024-06-29T06:40:56.830Z] FirebaseError: Timeout reached making request to https://firebase.googleapis.com/v1beta1/projects/morden-crm:addFirebase
+    at RetryOperation._fn (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
+[debug] [2024-06-29T06:42:54.173Z] ----------------------------------------------------------------------
+[debug] [2024-06-29T06:42:54.175Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-29T06:42:54.176Z] CLI Version:   11.21.0
+[debug] [2024-06-29T06:42:54.176Z] Platform:      win32
+[debug] [2024-06-29T06:42:54.176Z] Node Version:  v20.14.0
+[debug] [2024-06-29T06:42:54.176Z] Time:          Sat Jun 29 2024 12:12:54 GMT+0530 (India Standard Time)
+[debug] [2024-06-29T06:42:54.176Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-29T06:42:54.183Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-29T06:42:54.183Z] > authorizing via signed-in user (mkartsoffical@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\web development\crm\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-06-29T06:43:04.965Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-06-29T06:43:04.966Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"morden-crm","name":"morden-crm"}
+[debug] [2024-06-29T06:43:07.958Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2024-06-29T06:43:07.958Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2024-06-29T06:43:08.437Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID morden-crm. Please try again with a unique project ID.
+[debug] [2024-06-29T06:43:19.531Z] ----------------------------------------------------------------------
+[debug] [2024-06-29T06:43:19.534Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\madha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-29T06:43:19.534Z] CLI Version:   11.21.0
+[debug] [2024-06-29T06:43:19.534Z] Platform:      win32
+[debug] [2024-06-29T06:43:19.534Z] Node Version:  v20.14.0
+[debug] [2024-06-29T06:43:19.534Z] Time:          Sat Jun 29 2024 12:13:19 GMT+0530 (India Standard Time)
+[debug] [2024-06-29T06:43:19.534Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-29T06:43:19.541Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-29T06:43:19.542Z] > authorizing via signed-in user (mkartsoffical@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\web development\crm\client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-06-29T06:43:25.209Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-06-29T06:43:26.160Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-06-29T06:43:26.161Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project morden-crm (morden-crm) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

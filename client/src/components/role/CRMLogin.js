@@ -5,12 +5,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import WorkIcon from '@mui/icons-material/Work';
 import styled from 'styled-components';
-import BackgroundImage from '../home/1.jpg';
+// import BackgroundImage from '../home/1.jpg';
 // import logo from '../home/whatsapp-image-20240123-at-1705-1@2x.png';
 
 const AnimatedBackground = styled.div`
   min-height: 100vh;
-  background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8)), url(${BackgroundImage}) no-repeat center center fixed;
+  background: linear-gradient(to bottom, rgba(78, 101, 255, 0.8), rgba(146, 239, 253, 0.8));
   background-size: cover;
 `;
 
