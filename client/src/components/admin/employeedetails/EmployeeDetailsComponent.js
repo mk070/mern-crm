@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import EmployeeDetailsCards from './EmployeeDetailsCards';
-import Header from '../side/header';
-import Side from '../side/side';
-import { Box } from '@mui/material';
+import Header from '../side/header'; // Adjust import path as per your project structure
+import Side from '../side/side'; // Adjust import path as per your project structure
+import { Box, CircularProgress, Typography, Grid } from '@mui/material';
+
 function EmployeeDetailsComponent() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isSidebar, setIsSidebar] = useState(true);
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,22 +26,22 @@ function EmployeeDetailsComponent() {
         fetchData();
     }, []);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (loading) return <CircularProgress />;
+
+    if (error) return <Typography color="error">Error: {error.message}</Typography>;
 
     return (
-        <>
         <div className="app">
-         <Side isSidebar={isSidebar}/>
-        <main className="content">
-        <Box sx={{ marginLeft: '20px' }}>
-        <Header title="Employee Details" subtitle="" />
-        </Box>   
-            <EmployeeDetailsCards data={data} />
-        
-        </main>
+            <Side isSidebar={isSidebar} />
+            <main className="content">
+                <Box m="20px">
+                    <Header title="Employee Details" subtitle="" />
+                    <Grid container spacing={1}>
+                        <EmployeeDetailsCards data={data} />
+                    </Grid>
+                </Box>
+            </main>
         </div>
-     </>
     );
 }
 

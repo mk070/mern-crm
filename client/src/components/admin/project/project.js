@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Snackbar, Box } from '@mui/material';
 import Side from '../side/side';
+import Header from '../side/header';
 
 const AssignProjectForm = () => {
   const [projectName, setProjectName] = useState('');
@@ -67,6 +68,7 @@ const AssignProjectForm = () => {
        <Side isSidebar={isSidebar}/>
       <main className="content">
 
+      <Header  title="Projects" subtitle="" />
     <Box
       sx={{
         display: 'flex',

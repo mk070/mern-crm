@@ -27,7 +27,7 @@ import EmployeeDetailsComponent from "./components/admin/employeedetails/Employe
 import UserDetailsComponent from "./components/admin/clientdetails/userdetails";
 import ErrorBoundary from "./components/ErrorBoundary";
 import InvoiceForm from "./components/admin/invoice/components/InvoiceForm";
-import Editor from "./components/admin/proposal/components/Editor";
+import Editor from "./components/admin/proposal/Editor";
 import Count from "./components/admin/count/count";
 import RegisterAdmin from "./components/admin/add/registeradmin";
 import UploadPDF from "./components/admin/employeedetails/uploadpdf";
@@ -43,6 +43,12 @@ import ClientHome from "./components/user/pages/clienthome";
 import ProductForm from "./components/user/proddetails";
 import ProjectAssignForm from "./components/admin/project/project";
 import ProjectDetails from "./components/employee/pages/project";
+
+import Socialmedia from "./components/admin/socialmedia/socialmedia";
+import X from "./components/admin/socialmedia/X";
+import Facebook from "./components/admin/socialmedia/Facebook";
+import Instagram from "./components/admin/socialmedia/Instagram";
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -89,7 +95,13 @@ function App() {
       <Route path="/userlogin" element={<UserLogin/>}/>
       <Route path="/adminlogin" element={<AdminLogin/>}/>
       <Route path='/employeelogin' element={<EmployeeLogin/>}/>
-  
+
+      <Route path="/socialmedia" element={<Socialmedia /> } />
+      <Route path="/x" element={<X /> } />
+      <Route path="/facebook" element={<Facebook /> } />
+      <Route path="/instagram" element={<Instagram /> } />
+
+
       <Route path='/usersignup' element={<UserSignup/>}/>
       <Route path='/employeesignup' element={<EmployeeSignup/>}/>
 

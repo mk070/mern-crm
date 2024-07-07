@@ -26,6 +26,8 @@ const OtherDetails = require('./routes/otherdetails');
 const Query = require('./routes/query');
 const Product = require('./routes/product');
 const Project = require('./routes/project');
+const XRoutes = require('./routes/x'); // Add this line
+
 
 //Database Connection
 mongoose
@@ -42,15 +44,16 @@ mongoose
 
 app.use(express.json());
 app.use(cors({
-  origin: '*', // Allow all origins
-  methods: ['GET', 'POST', 'OPTIONS'], // Allowable methods
+  origin: ['http://localhost:3000', '*'], // Allow requests from localhost:3000 and any other origin
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'OPTIONS','PUT'], // Allowable methods
   allowedHeaders: ['Authorization', 'Content-Type'], // Allowable headers
 }));app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Server running");
+  res.send("Server running bro");
 });
 
 // routes
@@ -74,8 +77,17 @@ app.use("/api/query",Query)
 app.use("/api/product",Product)
 app.use("/api/project",Project)
 
+//socailmedia
+app.use('/api/social/X', XRoutes); // Add this line
+
 app.listen(`${process.env.PORT}` ,()=>{
   console.log(`Server is Running on at http://localhost:${process.env.PORT}`);
 });
 
+app.get('/test', (req, res) => {
+  res.send('Server is running and accessible');
+});
 
+app.get('/api/lead/lead', (req, res) => {
+  res.json({ message: 'Leads data' });
+});

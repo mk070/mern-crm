@@ -68,6 +68,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "dev":"nodemon start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

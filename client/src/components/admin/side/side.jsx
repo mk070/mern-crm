@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { tokens } from "./theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import TagIcon from '@mui/icons-material/Tag';
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -53,6 +54,8 @@ const Side = () => {
 
     <Box
       sx={{
+        position:"",
+        zIndex:"1",
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
@@ -149,13 +152,13 @@ const Side = () => {
               setSelected={setSelected}
             />
             
-            {/* <Item
-              title="Client details"
-              to="/userdetails"
-              icon={< PeopleOutlinedIcon/>}
+            <Item
+              title="Social Media"
+              to="/socialmedia"
+              icon={< TagIcon/>}
               selected={selected}
               setSelected={setSelected}
-            /> */}
+            />
             
 
             
