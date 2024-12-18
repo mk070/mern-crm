@@ -97,9 +97,9 @@ function App() {
       <Route path='/employeelogin' element={<EmployeeLogin/>}/>
 
       <Route path="/socialmedia" element={<Socialmedia /> } />
-      <Route path="/x" element={<X /> } />
-      <Route path="/facebook" element={<Facebook /> } />
-      <Route path="/instagram" element={<Instagram /> } />
+      <Route path="/socialmedia/x" element={<X /> } />
+      <Route path="/socialmedia/facebook" element={<Facebook /> } />
+      <Route path="/socialmedia/instagram" element={<Instagram /> } />
 
 
       <Route path='/usersignup' element={<UserSignup/>}/>

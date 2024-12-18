@@ -123,9 +123,9 @@ function Count() {
 
   return (
     <>
-      <div className="app" style={{overflow:'hidden'}}>
+      <div className="app" style={{marginLeft:"",overflow:'hidden'}}>
         <Side isSidebar={isSidebar}/>
-        <main className="content">
+        <main className="content" style={{marginLeft:"270px"}}>
           <Box
             style={{
               display: 'flex',

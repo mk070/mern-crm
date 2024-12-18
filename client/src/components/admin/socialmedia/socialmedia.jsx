@@ -14,7 +14,7 @@ const SocialMedia = () => {
         <div className="app">
             <Side isSidebar={isSidebar} />
 
-            <main className="content">
+            <main className="content" style={{marginLeft:"270px",padding:'30px 50px'}}>
                 <Header title="Projects" subtitle="Manage your social media posts and engagement"  />
 
                 <Box
@@ -28,32 +28,32 @@ const SocialMedia = () => {
                         gap:'20px'
                     }}
                 >
-                        <Box component={Link} to={'/x'} 
-                            sx={{padding:'20px 60px' ,borderRadius:'20px',gap:'20px' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"gray", color:'black',transition:"0.5s ease-in-out",
-                                '&:hover':{ bgcolor:'blue'}
+                        <Box component={Link} to={'/socialmedia/x'} 
+                            sx={{padding:'20px 60px' ,borderRadius:'20px',boxShadow:"2px 2px 2px 1px",scale:"1" ,gap:'20px',border:'2px solid black' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none',  color:'black',transition:"0.5s ease-in-out",
+                                '&:hover':{ bgcolor:'aliceblue',scale:'1.08',}
                             }}>
-                                <XIcon  sx={{ fontSize: 40 }} />
+                                <XIcon  sx={{ fontSize: 40,color:"red" }} />
                                 <Typography variant='h5'>X</Typography>
                         </Box>
-                        <Box component={Link} to={'/instagram'} 
-                            sx={{padding:'20px 60px' ,borderRadius:'20px',gap:'20px' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"gray", color:'black',transition:"0.5s ease-in-out",
-                                '&:hover':{ bgcolor:'blue'}
+                        <Box component={Link} to={'/socialmedia/instagram'} 
+                            sx={{padding:'20px 60px' ,borderRadius:'20px',boxShadow:"2px 2px 2px 1px",gap:'20px',border:'2px solid black' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"", color:'black',transition:"0.5s ease-in-out",
+                                '&:hover':{ bgcolor:'aliceblue',scale:'1.08'}
                             }}>
-                                <InstagramIcon sx={{ fontSize: 40 }}  />
+                                <InstagramIcon sx={{ fontSize: 40 ,color:'palevioletred'}}  />
                                 <Typography variant='h5'>Instagram</Typography>
                         </Box>
-                        <Box component={Link} to={'/facebook'} 
-                            sx={{padding:'20px 60px' ,borderRadius:'20px',gap:'20px' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"gray", color:'black',transition:"0.5s ease-in-out",
-                                '&:hover':{ bgcolor:'blue'}
+                        <Box component={Link} to={'/socialmedia/facebook'} 
+                            sx={{padding:'20px 60px' ,borderRadius:'20px',boxShadow:"2px 2px 2px 1px",gap:'20px',border:'2px solid black' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"", color:'black',transition:"0.5s ease-in-out",
+                                '&:hover':{ bgcolor:'aliceblue',scale:'1.08'}
                             }}>
-                                <FacebookIcon  sx={{ fontSize: 40 }} />
+                                <FacebookIcon  sx={{ fontSize: 40 ,color:'blueviolet'}} />
                                 <Typography variant='h5'>Facebook</Typography>
                         </Box>
-                        <Box component={Link} to={'/linkedin'} 
-                            sx={{padding:'20px 60px' ,borderRadius:'20px',gap:'20px' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"gray", color:'black',transition:"0.5s ease-in-out",
-                                '&:hover':{ bgcolor:'blue'}
+                        <Box component={Link} to={'/socialmedia/linkedin'} 
+                            sx={{padding:'20px 60px' ,borderRadius:'20px',boxShadow:"2px 2px 2px 1px",gap:'20px',border:'2px solid black' ,display:'flex',justifyContent:'center',alignItems:"center",flexDirection:"column", textDecoration: 'none', bgcolor:"", color:'black',transition:"0.5s ease-in-out",
+                                '&:hover':{ bgcolor:'aliceblue',scale:'1.08'}
                             }}>
-                                <LinkedIn sx={{ fontSize: 40 }}  />
+                                <LinkedIn sx={{ fontSize: 40 ,color:'blue'}}  />
                                 <Typography variant='h5'>LinkedIn</Typography>
                         </Box>
                 </Box>

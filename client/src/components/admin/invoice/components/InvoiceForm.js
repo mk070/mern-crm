@@ -128,7 +128,7 @@ class InvoiceForm extends React.Component {
           
         <div className="app">
           <Side isSidebar={isSidebar}/>
-          <main className="content">
+          <main className="content" style={{marginLeft:"270px"}}>
           <Box sx={{ marginLeft: '20px' }}>
         <Header title="Invoice" subtitle="" />
         </Box> 

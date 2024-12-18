@@ -111,7 +111,7 @@ const Editor = () => {
     return (
         <div className="app">
             <Side />
-            <main className="content">
+            <main className="content" style={{marginLeft:"270px"}}>
                 <EditorContainer>
                     <EditorHeader>
                     <Header title="Create your Proposal" subtitle="" />

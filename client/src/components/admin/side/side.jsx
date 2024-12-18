@@ -1,11 +1,9 @@
 import { useState } from "react";
-import {  Menu, MenuItem } from "react-pro-sidebar";
+import { Menu, MenuItem } from "react-pro-sidebar";
 import { ProSidebar } from "react-pro-sidebar";
-
 import "react-pro-sidebar/dist/css/styles.css";
-
 import { Box, IconButton, Typography } from "@mui/material";
-import logoImage from './logo.png'; 
+import logoImage from './logo.png';
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { tokens } from "./theme";
@@ -49,13 +47,11 @@ const Side = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <>
-    
-
     <Box
       sx={{
-        position:"",
-        zIndex:"1",
+        position: 'fixed', // Make the sidebar fixed
+        height: '100vh', // Full height of the viewport
+        zIndex: '1',
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
@@ -74,7 +70,6 @@ const Side = () => {
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
-        
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
@@ -92,7 +87,6 @@ const Side = () => {
                 alignItems="center"
                 ml="15px"
               >
-                
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -121,7 +115,6 @@ const Side = () => {
                   Admin
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  
                 </Typography>
               </Box>
             </Box>
@@ -135,8 +128,6 @@ const Side = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
-            
             <Item
               title="Lead"
               to="/lead"
@@ -151,18 +142,13 @@ const Side = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            
             <Item
               title="Social Media"
               to="/socialmedia"
-              icon={< TagIcon/>}
+              icon={<TagIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            
-
-            
-           
             <Item
               title="Proposal"
               to="/proposal"
@@ -173,34 +159,17 @@ const Side = () => {
             <Item
               title="Invoice"
               to="/invoice"
-              icon={<DescriptionIcon/>}
+              icon={<DescriptionIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            
-            {/* <Item
-              title="Assign"
-              to="/uploadpdf"
-              icon={< AssignmentIndIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
-            
             <Item
               title="Project"
               to="/project"
-              icon={< WorkOutlineIcon />}
+              icon={<WorkOutlineIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            {/* <Item
-              title="Query"
-              to="/querydisplay"
-              icon={<QueryBuilderIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
-            
             <Item
               title="Add Admin"
               to="/addadmin"
@@ -215,7 +184,6 @@ const Side = () => {
               selected={selected}
               setSelected={setSelected}
             />
-             
             <Item
               title="Logout"
               to="/"
@@ -223,13 +191,10 @@ const Side = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
-            
           </Box>
         </Menu>
       </ProSidebar>
     </Box>
-    </>
   );
 };
 

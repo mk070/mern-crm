@@ -4,43 +4,24 @@ import { Card, CardActionArea, CardContent, Typography, AppBar, Toolbar, Contain
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import WorkIcon from '@mui/icons-material/Work';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { gsap } from 'gsap';
-
-const gradientAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const AnimatedBackground = styled.div`
-  min-height: 100vh;
-  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
-  background-size: 800% 800%;
-  animation: ${gradientAnimation} 15s ease infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-`;
 
 const theme = createTheme({
   typography: {
-    fontFamily: '"Roboto Condensed", sans-serif',
+    fontFamily: 'Salesforce Sans, Arial, sans-serif',
   },
   components: {
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(255, 255, 255, 0.85)',
-          backgroundImage: 'linear-gradient(to top right, rgba(255, 255, 255, 0.6), rgba(250, 250, 250, 0.9))',
-          borderRadius: '20px',
+          backgroundColor: '#ffffff',
+          borderRadius: '12px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           transition: 'box-shadow 0.3s, transform 0.3s',
           '&:hover': {
-            boxShadow: '0 12px 24px rgba(0, 0, 0, 0.25)',
-            transform: 'scale(1.05)',
+            boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
+            transform: 'scale(1.02)',
           },
         },
       },
@@ -49,10 +30,20 @@ const theme = createTheme({
 });
 
 const cardsData = [
-  // { title: 'CLIENT', path: '/userlogin', icon: <AccountCircleIcon style={{ fontSize: 70, color: 'black' }} /> },
-  { title: 'ADMIN', path: '/adminlogin', icon: <AdminPanelSettingsIcon style={{ fontSize: 70, color: 'black' }} /> },
-  { title: 'EMPLOYEE', path: '/employeelogin', icon: <WorkIcon style={{ fontSize: 70, color: 'black' }} /> },
+  { title: 'ADMIN', path: '/adminlogin', icon: <AdminPanelSettingsIcon style={{ fontSize: 70, color: '#0070d2' }} /> },
+  { title: 'EMPLOYEE', path: '/employeelogin', icon: <WorkIcon style={{ fontSize: 70, color: '#0070d2' }} /> },
 ];
+
+const StyledAppBar = styled(AppBar)`
+  background-color: transparent !important;
+  box-shadow: none !important;
+`;
+
+const StyledLogo = styled.img`
+  height: 88px;
+  border-radius: 12px;
+  margin-top: 10px;
+`;
 
 const Carousel = styled.div`
   display: flex;
@@ -114,47 +105,35 @@ function CardsPage() {
   };
 
   return (
-    <ThemeProvider theme={theme} >
-      <AnimatedBackground>
-        <AppBar position="static" color="transparent" elevation={0}>
-          <Toolbar>
-            <img src='/logo.png' alt="Logo" style={{ height: '88px', borderRadius: '20px', marginTop: '10px' }} />
-          </Toolbar>
-        </AppBar>
-        <Container maxWidth="lg" style={{ paddingTop: 50, paddingBottom: 50, height: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <Typography variant="h3" align="center" gutterBottom style={{ color: '#333', fontWeight: 'bold' }}>
-            Select Your Role
-          </Typography>
-          <Carousel>
-            <CarouselTrack ref={trackRef}>
-              {cardsData.map((item, index) => (
-                <CarouselCard key={index} ref={addToRefs}>
-                  <Card
-                    elevation={0}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      minHeight: '250px',
-                      width: '100%',
-                    }}
-                  >
-                    <CardActionArea onClick={() => navigate(item.path)} style={{ width: '100%', height: '100%' }}>
-                      <CardContent style={{ textAlign: 'center' }}>
-                        {item.icon}
-                        <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', marginTop: '20px' }}>
-                          {item.title}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </CarouselCard>
-              ))}
-            </CarouselTrack>
-          </Carousel>
-        </Container>
-      </AnimatedBackground>
+    <ThemeProvider theme={theme}>
+      <StyledAppBar position="static">
+        <Toolbar>
+          <StyledLogo src='/logo.png' alt="Logo" />
+        </Toolbar>
+      </StyledAppBar>
+      <Container maxWidth="lg" style={{ paddingTop: 50, paddingBottom: 50, minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <Typography variant="h3" align="center" gutterBottom style={{ color: '#333', fontWeight: 'bold' }}>
+          Select Your Role
+        </Typography>
+        <Carousel>
+          <CarouselTrack ref={trackRef}>
+            {cardsData.map((item, index) => (
+              <CarouselCard key={index} ref={addToRefs}>
+                <Card elevation={0}>
+                  <CardActionArea onClick={() => navigate(item.path)}>
+                    <CardContent style={{ textAlign: 'center' }}>
+                      {item.icon}
+                      <Typography gutterBottom variant="h5" component="div" style={{ color: '#333', fontWeight: 'bold', marginTop: '20px' }}>
+                        {item.title}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </CarouselCard>
+            ))}
+          </CarouselTrack>
+        </Carousel>
+      </Container>
     </ThemeProvider>
   );
 }

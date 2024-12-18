@@ -12,7 +12,6 @@ const employeeSchema = new mongoose.Schema({
 	pdfUrl: { type: String },
     clientassign: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 	otherDetails: {type: mongoose.Schema.Types.ObjectId,ref: 'OtherDetails'}
-
 });
 
 employeeSchema.methods.generateAuthToken = function () {

@@ -4,7 +4,10 @@ const app = express();
 const cors = require("cors");
 const mongoose=require('mongoose');
 const bodyParser = require('body-parser');
+// require('./scheduler');
+// const { start } = require('./scheduler'); // Import the start function from scheduler
 
+// start();
 
 
 const userRoutes = require("./routes/users");
@@ -26,7 +29,9 @@ const OtherDetails = require('./routes/otherdetails');
 const Query = require('./routes/query');
 const Product = require('./routes/product');
 const Project = require('./routes/project');
-const XRoutes = require('./routes/x'); // Add this line
+const XRoutes = require('./routes/twitter'); // Add this line
+const instagramRouter = require('./routes/instagram');
+
 
 
 //Database Connection
@@ -78,7 +83,9 @@ app.use("/api/product",Product)
 app.use("/api/project",Project)
 
 //socailmedia
-app.use('/api/social/X', XRoutes); // Add this line
+app.use('/api/social/x', XRoutes); 
+app.use('/api/social/instagram', instagramRouter);
+
 
 app.listen(`${process.env.PORT}` ,()=>{
   console.log(`Server is Running on at http://localhost:${process.env.PORT}`);

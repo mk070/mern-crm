@@ -33,10 +33,10 @@ function EmployeeDetailsComponent() {
     return (
         <div className="app">
             <Side isSidebar={isSidebar} />
-            <main className="content">
+            <main className="content" style={{marginLeft:"270px"}}>
                 <Box m="20px">
                     <Header title="Employee Details" subtitle="" />
-                    <Grid container spacing={1}>
+                    <Grid container spacing={3}>
                         <EmployeeDetailsCards data={data} />
                     </Grid>
                 </Box>
