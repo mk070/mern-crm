@@ -49,6 +49,8 @@ import X from "./components/admin/socialmedia/X";
 import Facebook from "./components/admin/socialmedia/Facebook";
 import Instagram from "./components/admin/socialmedia/Instagram";
 
+import Chatbot from "./components/Chatbot";
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -136,7 +138,8 @@ function App() {
       <Route path='/product' element={<ProductForm/>}/>
     </Routes> 
     </ErrorBoundary> 
-     
+    <Chatbot /> {/* Add Chatbot here */}
+
 
     </>
   );

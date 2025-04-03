@@ -2,7 +2,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fetch = require("node-fetch"); // Required for Fetch API in Node.js
 
 // Initialize Google Generative AI Client
-const genAI = new GoogleGenerativeAI("AIzaSyBEyKrKyxnjVCei19cnGhapwpCc7nFmZzw");
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
 /**
  * Analyze Image with Gemini API
@@ -14,7 +14,7 @@ const analyzeImage = async (imageUrl) => {
     const imageResp = await fetch(imageUrl).then((response) => response.arrayBuffer());
 
     // Initialize the Gemini model
-    const model = genAI.getGenerativeModel({ model: "models/gemini-1.5-pro" });
+    const model = genAI.getGenerativeModel({ model: "models/gemini-2.0-flash" });
 
     // Generate content with the image data and captioning prompt
     const result = await model.generateContent([
@@ -24,7 +24,7 @@ const analyzeImage = async (imageUrl) => {
           mimeType: "image/jpeg",
         },
       },
-      "Create an attractive and engaging Instagram caption for this image. Highlight the unique details and emotions conveyed by the image. Use creativity, metaphors, and trending hashtags. The caption should be between 20 to 50 words and include 5 to 10 relevant hashtags.",
+      "Generate a single, engaging Instagram caption for this image. The caption should be between 20 to 50 words, highlight unique details and emotions, use creativity, and include 5 to 10 relevant hashtags. Do not include any additional text or explanations—only the caption itself.",
     ]);
 
     // Log the entire response to debug its structure

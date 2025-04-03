@@ -1,21 +1,189 @@
-
-
-
-.container {
-  width: 60%;
-  background: #FFF;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-  margin: 10px auto 10px auto !important;
-  min-height: 100vh;
+/* Base styles */
+:root {
+  --primary-color: #9333ea;
+  --primary-hover: #7e22ce;
+  --secondary-color: #2563eb;
+  --secondary-hover: #1d4ed8;
+  --background-color: #f9fafb;
+  --white: #ffffff;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-800: #1f2937;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.ql-toolbar.ql-snow {
+.app,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.app {
   display: flex;
+  position: relative;
+}
+
+/* Editor Container */
+.editor-container {
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.editor-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Header */
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.editor-header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--gray-800);
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--secondary-hover);
+}
+
+/* Icons */
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-small {
+  width: 1rem;
+  height: 1rem;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* AI Dropdown */
+.ai-dropdown {
+  position: absolute;
+  right: 1.5rem;
+  margin-top: 0.5rem;
+  width: 14rem;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+  z-index: 10;
+}
+
+.dropdown-content {
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: var(--gray-100);
+}
+
+/* Editor Box */
+.editor-box {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+
+.editor-content {
+  padding: 1.5rem;
+}
+
+.quill-editor {
+  min-height: 600px;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: #F3F3F3;
-  border: none !important;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+.loading-content {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.loading-content span {
+  font-size: 1.125rem;
 }

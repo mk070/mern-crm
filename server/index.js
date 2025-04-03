@@ -31,6 +31,8 @@ const Product = require('./routes/product');
 const Project = require('./routes/project');
 const XRoutes = require('./routes/twitter'); // Add this line
 const instagramRouter = require('./routes/instagram');
+const  Chatbot  = require("./routes/chatbot");
+const  generateproposal  = require("./routes/generate_proposal");
 
 
 
@@ -51,7 +53,7 @@ app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:3000', '*'], // Allow requests from localhost:3000 and any other origin
   optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'OPTIONS','PUT'], // Allowable methods
+  methods: ['GET', 'POST', 'OPTIONS','PUT','DELETE'], // Allowable methods
   allowedHeaders: ['Authorization', 'Content-Type'], // Allowable headers
 }));app.use(bodyParser.json());
 
@@ -81,6 +83,10 @@ app.use("/api/otherdetails",OtherDetails)
 app.use("/api/query",Query)
 app.use("/api/product",Product)
 app.use("/api/project",Project)
+
+app.use("/api/chatbot",Chatbot)
+
+app.use("/api/generate-proposal",generateproposal)
 
 //socailmedia
 app.use('/api/social/x', XRoutes); 
