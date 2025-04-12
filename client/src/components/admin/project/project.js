@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Snackbar, Box } from '@mui/material';
-import Side from '../side/side';
 import Header from '../side/header';
 
 const AssignProjectForm = () => {
@@ -65,7 +64,7 @@ const AssignProjectForm = () => {
 
   return (
     <div className="app">
-       <Side isSidebar={isSidebar}/>
+    
       <main className="content" style={{marginLeft:"270px"}}>
 
       <Header  title="Projects" subtitle="" />

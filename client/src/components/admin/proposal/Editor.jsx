@@ -4,7 +4,6 @@ import 'quill/dist/quill.snow.css';
 import { Wand2, FileDown, Loader2, ChevronDown } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
 import './App.css';
-import Side from '../side/side';
 
 const toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
@@ -117,7 +116,7 @@ function Editor() {
 
   return (
     <div className="app">
-        <Side isSidebar={isSidebar} />
+      
 
         <div className="editor-container" style={{marginLeft:"270px"}}>
             <div className="editor-wrapper">

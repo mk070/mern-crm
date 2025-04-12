@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import Header from "../side/header";
 import { tokens } from "../lead/theme";
-import Side from "../side/side";
 
 const Calendar = () => {
   const theme = useTheme();
@@ -51,8 +50,8 @@ const Calendar = () => {
   return (
     <>
       <div className="app">
-       <Side isSidebar={isSidebar}/>
-      <main className="content" style={{marginLeft:"270px"}}>
+       
+      <main className="content" style={{}}>
     <Box m="20px">
       <Header title="Calendar" subtitle="" />
 

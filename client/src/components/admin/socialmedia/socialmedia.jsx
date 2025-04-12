@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Header from '../side/header'; // Adjusted to correct filename casing
-import Side from '../side/side'; // Adjusted to correct filename casing
 import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -12,9 +11,8 @@ const SocialMedia = () => {
     const [isSidebar, setIsSidebar] = useState(true);
     return (
         <div className="app">
-            <Side isSidebar={isSidebar} />
-
-            <main className="content" style={{marginLeft:"270px",padding:'30px 50px'}}>
+           
+            <main className="content" style={{}}>
                 <Header title="Projects" subtitle="Manage your social media posts and engagement"  />
 
                 <Box

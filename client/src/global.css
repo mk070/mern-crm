@@ -40,3 +40,7 @@ body {
 .datePickerWrapper .react-datepicker {
   z-index: 9999 !important; /* Use a high value to ensure it overlays other content */
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

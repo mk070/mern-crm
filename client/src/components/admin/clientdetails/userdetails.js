@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserDetailsCards from './UserDetailsCards';
-import Side from '../side/side';
 import Header from '../side/header';
 import { Box } from '@mui/material';
 import './team.css';
@@ -33,7 +32,7 @@ if (loading) return <p>Loading...</p>;
  return (
         <>
         <div className="app">
-         <Side isSidebar={isSidebar}/>
+        
         <main className="content">
         
         <Box sx={{ marginLeft: '20px' }}>

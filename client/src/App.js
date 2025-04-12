@@ -10,9 +10,8 @@ import {
 import HomePage from "./components/home/HomePage";
 import CRMLogin from "./components/role/CRMLogin";
 import UserLogin from "./components/user/UserLogin";
-import AdminLogin from "./components/admin/admin";
+import AdminLogin from "./components/admin/Admin";
 import EmployeeLogin from "./components/employee/EmployeeLogin";
-import Side from "./components/admin/side/side";
 
 
 import EmployeeSignup from "./components/employee/signup/EmployeeSignup";
@@ -28,7 +27,7 @@ import UserDetailsComponent from "./components/admin/clientdetails/userdetails";
 import ErrorBoundary from "./components/ErrorBoundary";
 import InvoiceForm from "./components/admin/invoice/components/InvoiceForm";
 import Editor from "./components/admin/proposal/Editor";
-import Count from "./components/admin/count/count";
+import Dashboard from "./components/admin/Dashboard";
 import RegisterAdmin from "./components/admin/add/registeradmin";
 import UploadPDF from "./components/admin/employeedetails/uploadpdf";
 import Navbar from "./components/employee/Navbar";
@@ -50,6 +49,10 @@ import Facebook from "./components/admin/socialmedia/Facebook";
 import Instagram from "./components/admin/socialmedia/Instagram";
 
 import Chatbot from "./components/Chatbot";
+import AdminLayout from "./components/layout/AdminLayout";
+import SocialMedia from "./components/admin/socialmedia/socialmedia";
+import SocialMediaConnect from "./components/admin/socialmedia/SocialMediaConnect";
+import CreatePost from "./components/admin/socialmedia/CreatePost";
 
 function App() {
   const action = useNavigationType();
@@ -91,56 +94,54 @@ function App() {
 
   return (
     <>
-    <ErrorBoundary> 
-    <Routes>
-      <Route path="/crmlogin" element={<CRMLogin />} />
-      <Route path="/userlogin" element={<UserLogin/>}/>
-      <Route path="/adminlogin" element={<AdminLogin/>}/>
-      <Route path='/employeelogin' element={<EmployeeLogin/>}/>
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<CRMLogin />} />
+          <Route path="/userlogin" element={<UserLogin />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
+          <Route path="/employeelogin" element={<EmployeeLogin />} />
 
-      <Route path="/socialmedia" element={<Socialmedia /> } />
-      <Route path="/socialmedia/x" element={<X /> } />
-      <Route path="/socialmedia/facebook" element={<Facebook /> } />
-      <Route path="/socialmedia/instagram" element={<Instagram /> } />
+          
 
+          <Route path="/usersignup" element={<UserSignup />} />
+          <Route path="/employeesignup" element={<EmployeeSignup />} />
 
-      <Route path='/usersignup' element={<UserSignup/>}/>
-      <Route path='/employeesignup' element={<EmployeeSignup/>}/>
+          <Route path="/" element={<AdminLayout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="lead" element={<Lead />} />
+            <Route path="employeedetails" element={<EmployeeDetailsComponent />} />
+            <Route path="userdetails" element={<UserDetailsComponent />} />
+            <Route path="proposal" element={<Editor />} />
+            <Route path="invoice" element={<InvoiceForm />} />
+            <Route path="addadmin" element={<RegisterAdmin />} />
+            <Route path="uploadpdf" element={<UploadPDF />} />
+            <Route path="project" element={<ProjectAssignForm />} />
+            <Route path="calendar" element={<Calendar />} />
+              <Route path="/socialmedia/connect" element={<SocialMediaConnect />} />
+              <Route path="/socialmedia/create" element={<CreatePost />} />
+              <Route path="/socialmedia/facebook" element={<Facebook />} />
+              <Route path="/socialmedia/instagram" element={<Instagram />} />
+          </Route>
 
-      <Route path='/side' element={<Side/>}/>
-      <Route path='/dashboard' element={<Count/>}/>
-      <Route path='/lead' element={<Lead/>}/>
-      <Route path='/employeedetails' element={<EmployeeDetailsComponent/>}/>
-      <Route path='/userdetails' element={<UserDetailsComponent/>}/>
-      <Route path='/proposal' element={<Editor/>}/>
-      <Route path='/invoice' element={<InvoiceForm/>}/> 
-      <Route path='/addadmin' element={<RegisterAdmin/>}/>
-      <Route path='/uploadpdf' element={<UploadPDF/>}/>
-      <Route path='/project' element={<ProjectAssignForm/>}/>
-      <Route path='/calendar' element={<Calendar/>}/>
-      <Route path='/' element={<HomePage />}/>
+          <Route path="/" element={<HomePage />} />
 
-      
-      <Route path='/profile' element={<Profile/>}/>
-      <Route path='/otherdetails' element={<OtherDetails/>}/>
-      
-      <Route path='/task' element={<Task/>}/>
-      <Route path="/assign" element={<Assign/>}/>
-      <Route path='/nav' element={<Navbar/>}/>
-      <Route path='/pdf' element={<PDFViewer/>}/>
-      <Route path='/employeehome' element={<EmployeeHome/>}/>
-      <Route path='/projectdetails' element={<ProjectDetails/>}/>
-       
-      <Route path='/clientnavbar' element={<ClientNavbar/>}/>
-      <Route path='/clientprofile' element={<ClientProfile/>}/>
-      <Route path='/clienthome' element={<ClientHome/>}/>
-      <Route path='/clientprofile' element={<ClientProfile/>}/>
-      <Route path='/product' element={<ProductForm/>}/>
-    </Routes> 
-    </ErrorBoundary> 
-    <Chatbot /> {/* Add Chatbot here */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/otherdetails" element={<OtherDetails />} />
 
+          <Route path="/task" element={<Task />} />
+          <Route path="/assign" element={<Assign />} />
+          <Route path="/nav" element={<Navbar />} />
+          <Route path="/pdf" element={<PDFViewer />} />
+          <Route path="/employeehome" element={<EmployeeHome />} />
+          <Route path="/projectdetails" element={<ProjectDetails />} />
 
+          <Route path="/clientnavbar" element={<ClientNavbar />} />
+          <Route path="/clientprofile" element={<ClientProfile />} />
+          <Route path="/clienthome" element={<ClientHome />} />
+          <Route path="/product" element={<ProductForm />} />
+        </Routes>
+      </ErrorBoundary>
+      <Chatbot /> {/* Add Chatbot here */}
     </>
   );
 }

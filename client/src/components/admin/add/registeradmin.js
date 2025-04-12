@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Typography, Container, Box, Alert } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import Side from '../side/side';
 import Header from '../side/header';
 function RegisterAdmin() {
     const [formData, setFormData] = useState({
@@ -49,8 +48,7 @@ function RegisterAdmin() {
 
     return (
         <div className="app">
-       <Side isSidebar={isSidebar}/>
-      <main className="content" style={{marginLeft:"270px"}}>
+      <main className="content" style={{}}>
       <Box sx={{ marginLeft: '20px' }}>
         <Header title="Add Admin" subtitle="" />
         </Box> 

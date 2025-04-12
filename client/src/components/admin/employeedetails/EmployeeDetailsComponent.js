@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import EmployeeDetailsCards from './EmployeeDetailsCards';
 import Header from '../side/header'; // Adjust import path as per your project structure
-import Side from '../side/side'; // Adjust import path as per your project structure
 import { Box, CircularProgress, Typography, Grid } from '@mui/material';
 
 function EmployeeDetailsComponent() {
@@ -32,7 +31,7 @@ function EmployeeDetailsComponent() {
 
     return (
         <div className="app">
-            <Side isSidebar={isSidebar} />
+         
             <main className="content" style={{marginLeft:"270px"}}>
                 <Box m="20px">
                     <Header title="Employee Details" subtitle="" />

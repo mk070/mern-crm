@@ -8,7 +8,6 @@ import SendIcon from '@mui/icons-material/Send';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import axios from 'axios';
-import Side from '../side/side';
 import Header from '../side/header';
 import ScheduledPost from './ScheduledPost'; // Import the new component
 
@@ -106,7 +105,7 @@ const Instagram = () => {
 
     return (
         <div className="app">
-            <Side isSidebar={isSidebar} />
+           
 
             <main className="content" style={{ marginLeft:"240px",padding: '30px 50px' }}>
                 <Header title="Instagram" subtitle="Manage your Instagram posts" />

@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import SendIcon from '@mui/icons-material/Send';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import axios from 'axios';
-import Side from '../side/side';
 import Header from '../side/header';
 
 const Facebook = () => {
@@ -47,7 +46,7 @@ const Facebook = () => {
     const [isSidebar, setIsSidebar] = useState(true);
     return (
         <div className="app">
-            <Side isSidebar={isSidebar} />
+           
 
             <main className="content" style={{padding:'30px 50px'}}>
                 <Header title="Facebook" subtitle="Manage your Facebook posts"  />

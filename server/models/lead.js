@@ -1,12 +1,18 @@
 const mongoose = require("mongoose");
 
 const LeadSchema = new mongoose.Schema({
-  sno: { type: Number, required: true, unique: true }, // Added unique constraint
   name: { type: String, required: true },
-  email: { type: String, required: true, match: [/.+\@.+\..+/, 'Please fill a valid email address'] }, // Added regex validation for email
-  phone: { type: String, required: true }, // Changed to String to handle different formats
-  address: { type: String, required: true },
+  email: { 
+    type: String, 
+    required: true, 
+    match: [/.+\@.+\..+/, 'Please fill a valid email address'] 
+  },
+  phone: { type: String, required: true },
+  company: { type: String, required: true },   // updated from "address" to "company"
   source: { type: String, required: true },
+  status: { type: String, default: "new" },     // added default value
+  budget: { type: String },                     // optional
+  notes: { type: String }                       // optional
 });
 
 const Lead = mongoose.model("Lead", LeadSchema);

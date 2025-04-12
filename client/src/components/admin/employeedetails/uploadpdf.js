@@ -16,7 +16,6 @@ import {
     Checkbox,
     FormGroup 
 } from '@mui/material';
-import Side from '../side/side';
 import Header from '../side/header';
 
 function UploadPDF() {
@@ -118,7 +117,7 @@ function UploadPDF() {
 
     return (
         <div className="app">
-       <Side isSidebar={isSidebar}/>
+      
       <main className="content">
       <Box sx={{ marginLeft: '20px' }}>
         <Header title="Assign Lead & Clients" subtitle="" />

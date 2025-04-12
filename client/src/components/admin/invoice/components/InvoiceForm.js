@@ -8,7 +8,6 @@ import Card from 'react-bootstrap/Card';
 import InvoiceItem from './InvoiceItem';
 import InvoiceModal from './InvoiceModal';
 import Header from '../../side/header';
-import Side from '../../side/side';
 import InputGroup from 'react-bootstrap/InputGroup';
 import './side.css';
 
@@ -127,7 +126,7 @@ class InvoiceForm extends React.Component {
       <>
           
         <div className="app">
-          <Side isSidebar={isSidebar}/>
+        
           <main className="content" style={{marginLeft:"270px"}}>
           <Box sx={{ marginLeft: '20px' }}>
         <Header title="Invoice" subtitle="" />
