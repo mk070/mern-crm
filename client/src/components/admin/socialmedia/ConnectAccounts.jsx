@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import { X, AlertCircle, CheckCircle2, Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { X, AlertCircle, CheckCircle2, Instagram, Facebook, Building, Twitter } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const socialPlatforms = [
@@ -22,7 +22,7 @@ const socialPlatforms = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    icon: Linkedin,
+    icon: Building,
     color: 'bg-[#0A66C2]',
     description: 'Network and share professional content',
   },

@@ -26,7 +26,6 @@ import EmployeeDetailsComponent from "./components/admin/employeedetails/Employe
 import UserDetailsComponent from "./components/admin/clientdetails/userdetails";
 import ErrorBoundary from "./components/ErrorBoundary";
 import InvoiceForm from "./components/admin/invoice/components/InvoiceForm";
-import Editor from "./components/admin/proposal/Editor";
 import Dashboard from "./components/admin/Dashboard";
 import RegisterAdmin from "./components/admin/add/registeradmin";
 import UploadPDF from "./components/admin/employeedetails/uploadpdf";
@@ -53,6 +52,10 @@ import AdminLayout from "./components/layout/AdminLayout";
 import SocialMedia from "./components/admin/socialmedia/socialmedia";
 import SocialMediaConnect from "./components/admin/socialmedia/SocialMediaConnect";
 import CreatePost from "./components/admin/socialmedia/CreatePost";
+import ScheduledPost from "./components/admin/socialmedia/ScheduledPost";
+import Posts from "./components/admin/socialmedia/Posts";
+import ProposalsPage from "./components/admin/proposal/ProposalsPage";
+import EditorLayout from "./components/admin/proposal/EditorLayout";
 
 function App() {
   const action = useNavigationType();
@@ -111,7 +114,11 @@ function App() {
             <Route path="lead" element={<Lead />} />
             <Route path="employeedetails" element={<EmployeeDetailsComponent />} />
             <Route path="userdetails" element={<UserDetailsComponent />} />
-            <Route path="proposal" element={<Editor />} />
+
+            <Route path="proposal" element={<ProposalsPage />} />
+            <Route path="/proposals/new" element={<EditorLayout />} />
+      <Route path="/proposals/edit/:id" element={<EditorLayout />} />
+
             <Route path="invoice" element={<InvoiceForm />} />
             <Route path="addadmin" element={<RegisterAdmin />} />
             <Route path="uploadpdf" element={<UploadPDF />} />
@@ -119,6 +126,8 @@ function App() {
             <Route path="calendar" element={<Calendar />} />
               <Route path="/socialmedia/connect" element={<SocialMediaConnect />} />
               <Route path="/socialmedia/create" element={<CreatePost />} />
+              <Route path="/socialmedia/scheduled" element={<ScheduledPost />} />
+              <Route path="/socialmedia/posted" element={<Posts />} />
               <Route path="/socialmedia/facebook" element={<Facebook />} />
               <Route path="/socialmedia/instagram" element={<Instagram />} />
           </Route>

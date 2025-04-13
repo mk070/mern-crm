@@ -24,7 +24,7 @@ import {
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
   { icon: Users, label: 'Leads', path: '/lead' },
-  { icon: FileText, label: 'Employee Details', path: '/employeedetails' },
+  // { icon: FileText, label: 'Employee Details', path: '/employeedetails' },
   {
     icon: MessageSquare,
     label: 'Social Media',
@@ -41,7 +41,7 @@ const menuItems = [
   { icon: Briefcase, label: 'Projects', path: '/project' },
   { icon: UserPlus, label: 'Add Admin', path: '/addadmin' },
   { icon: Calendar, label: 'Calendar', path: '/calendar' },
-  { icon: Settings, label: 'Settings', path: '/settings' },
+  // { icon: Settings, label: 'Settings', path: '/settings' },
 ];
 
 export default function Sidebar() {
