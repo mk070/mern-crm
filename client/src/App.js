@@ -49,13 +49,11 @@ import Instagram from "./components/admin/socialmedia/Instagram";
 
 import Chatbot from "./components/Chatbot";
 import AdminLayout from "./components/layout/AdminLayout";
-import SocialMedia from "./components/admin/socialmedia/socialmedia";
 import SocialMediaConnect from "./components/admin/socialmedia/SocialMediaConnect";
 import CreatePost from "./components/admin/socialmedia/CreatePost";
 import ScheduledPost from "./components/admin/socialmedia/ScheduledPost";
 import Posts from "./components/admin/socialmedia/Posts";
 import ProposalsPage from "./components/admin/proposal/ProposalsPage";
-import EditorLayout from "./components/admin/proposal/EditorLayout";
 
 function App() {
   const action = useNavigationType();
@@ -116,8 +114,7 @@ function App() {
             <Route path="userdetails" element={<UserDetailsComponent />} />
 
             <Route path="proposal" element={<ProposalsPage />} />
-            <Route path="/proposals/new" element={<EditorLayout />} />
-      <Route path="/proposals/edit/:id" element={<EditorLayout />} />
+            
 
             <Route path="invoice" element={<InvoiceForm />} />
             <Route path="addadmin" element={<RegisterAdmin />} />
