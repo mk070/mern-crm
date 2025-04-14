@@ -23,7 +23,7 @@ import UserSignup from "./components/user/signup/UserSignup";
 import Lead from "./components/admin/lead/Lead";
 import Calendar from "./components/admin/calendar/calendar";
 import EmployeeDetailsComponent from "./components/admin/employeedetails/EmployeeDetailsComponent";
-import UserDetailsComponent from "./components/admin/clientdetails/userdetails";
+// import UserDetailsComponent from "./components/admin/clientdetails/userdetails";
 import ErrorBoundary from "./components/ErrorBoundary";
 import InvoiceForm from "./components/admin/invoice/components/InvoiceForm";
 import Dashboard from "./components/admin/Dashboard";
@@ -54,6 +54,11 @@ import CreatePost from "./components/admin/socialmedia/CreatePost";
 import ScheduledPost from "./components/admin/socialmedia/ScheduledPost";
 import Posts from "./components/admin/socialmedia/Posts";
 import ProposalsPage from "./components/admin/proposal/ProposalsPage";
+import { PaymentsDashboard } from "./components/admin/Payments_Invoicing/PaymentsDashboard";
+import { InvoiceGenerator } from "./components/admin/Payments_Invoicing/InvoiceGenerator";
+import TrackInvoices from "./components/admin/Payments_Invoicing/TrackInvoices";
+import { PaymentReminders } from "./components/admin/Payments_Invoicing/PaymentReminders";
+// import ProposalDashboard from "./components/admin/proposal/ProposalDashboard";
 
 function App() {
   const action = useNavigationType();
@@ -111,12 +116,20 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="lead" element={<Lead />} />
             <Route path="employeedetails" element={<EmployeeDetailsComponent />} />
-            <Route path="userdetails" element={<UserDetailsComponent />} />
+            {/* <Route path="userdetails" element={<UserDetailsComponent />} /> */}
 
             <Route path="proposal" element={<ProposalsPage />} />
             
 
             <Route path="invoice" element={<InvoiceForm />} />
+
+            {/* <Route path="payments-invoicing" element={<PaymentsDashboard />} /> */}
+            <Route path="/payments-invoicing/Payments" element={<PaymentsDashboard />} />    
+            <Route path="/payments-invoicing/invoice" element={<InvoiceGenerator />} />
+            <Route path="/payments-invoicing/track" element={<TrackInvoices />} />
+            <Route path="/payments-invoicing/reminders" element={<PaymentReminders />} />
+
+            
             <Route path="addadmin" element={<RegisterAdmin />} />
             <Route path="uploadpdf" element={<UploadPDF />} />
             <Route path="project" element={<ProjectAssignForm />} />

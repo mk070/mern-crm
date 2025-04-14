@@ -20,11 +20,12 @@ import {
   CheckSquare,
   PlusCircle
 } from 'lucide-react';
+import { BiMoney } from 'react-icons/bi';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
   { icon: Users, label: 'Leads', path: '/lead' },
-  // { icon: FileText, label: 'Employee Details', path: '/employeedetails' },
+  { icon: FileText, label: 'Employee Details', path: '/employeedetails' },
   {
     icon: MessageSquare,
     label: 'Social Media',
@@ -37,7 +38,19 @@ const menuItems = [
     ]
   },
   { icon: FileCheck, label: 'Proposals', path: '/proposal' },
-  { icon: FileSpreadsheet, label: 'Invoices', path: '/invoice' },
+  {
+    icon: BiMoney,
+    label: 'Financials',
+    path: '/payments-invoicing',
+    submenu: [
+      { icon: LayoutDashboard, label: 'Payments Dashboard', path: '/payments-invoicing/Payments' },
+      { icon: FileText, label: 'Invoice Generator', path: '/payments-invoicing/invoice' },
+      { icon: CheckSquare, label: 'Track Invoices', path: '/payments-invoicing/track' },
+      { icon: Clock, label: 'Payment Reminders', path: '/payments-invoicing/reminders' },
+      // { icon: CheckSquare, label: 'Posted Posts', path: '/socialmedia/posted' },
+    ]
+  },
+  // { icon: FileSpreadsheet, label: 'Invoices', path: '/invoice' },
   { icon: Briefcase, label: 'Projects', path: '/project' },
   { icon: UserPlus, label: 'Add Admin', path: '/addadmin' },
   { icon: Calendar, label: 'Calendar', path: '/calendar' },
