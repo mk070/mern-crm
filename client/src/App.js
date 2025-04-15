@@ -39,8 +39,7 @@ import ClientProfile from "./components/user/pages/clientprofile";
 import ClientHome from "./components/user/pages/clienthome";
 
 import ProductForm from "./components/user/proddetails";
-import ProjectAssignForm from "./components/admin/project/project";
-import ProjectDetails from "./components/employee/pages/project";
+// import ProjectDetails from "./components/employee/pages/project";
 
 import Socialmedia from "./components/admin/socialmedia/socialmedia";
 import X from "./components/admin/socialmedia/X";
@@ -58,6 +57,9 @@ import { PaymentsDashboard } from "./components/admin/Payments_Invoicing/Payment
 import { InvoiceGenerator } from "./components/admin/Payments_Invoicing/InvoiceGenerator";
 import TrackInvoices from "./components/admin/Payments_Invoicing/TrackInvoices";
 import { PaymentReminders } from "./components/admin/Payments_Invoicing/PaymentReminders";
+import ClientsDashboard from "./components/admin/clientdetails/ClientsDashboard";
+import ProjectsDashboard from "./components/admin/projects/ProjectsDashboard";
+import ProjectDetails from "./components/admin/projects/ProjectDetails";
 // import ProposalDashboard from "./components/admin/proposal/ProposalDashboard";
 
 function App() {
@@ -116,7 +118,10 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="lead" element={<Lead />} />
             <Route path="employeedetails" element={<EmployeeDetailsComponent />} />
-            {/* <Route path="userdetails" element={<UserDetailsComponent />} /> */}
+            <Route path="/clients" element={<ClientsDashboard />} />
+
+            <Route path="/projects" element={<ProjectsDashboard />} />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
 
             <Route path="proposal" element={<ProposalsPage />} />
             
@@ -132,7 +137,6 @@ function App() {
             
             <Route path="addadmin" element={<RegisterAdmin />} />
             <Route path="uploadpdf" element={<UploadPDF />} />
-            <Route path="project" element={<ProjectAssignForm />} />
             <Route path="calendar" element={<Calendar />} />
               <Route path="/socialmedia/connect" element={<SocialMediaConnect />} />
               <Route path="/socialmedia/create" element={<CreatePost />} />
@@ -152,7 +156,7 @@ function App() {
           <Route path="/nav" element={<Navbar />} />
           <Route path="/pdf" element={<PDFViewer />} />
           <Route path="/employeehome" element={<EmployeeHome />} />
-          <Route path="/projectdetails" element={<ProjectDetails />} />
+          {/* <Route path="/projectdetails" element={<ProjectDetails />} /> */}
 
           <Route path="/clientnavbar" element={<ClientNavbar />} />
           <Route path="/clientprofile" element={<ClientProfile />} />

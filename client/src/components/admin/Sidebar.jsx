@@ -51,7 +51,8 @@ const menuItems = [
     ]
   },
   // { icon: FileSpreadsheet, label: 'Invoices', path: '/invoice' },
-  { icon: Briefcase, label: 'Projects', path: '/project' },
+  { icon: Briefcase, label: 'Projects', path: '/projects' },
+  { icon: Users, label: 'Clients', path: '/clients' },
   { icon: UserPlus, label: 'Add Admin', path: '/addadmin' },
   { icon: Calendar, label: 'Calendar', path: '/calendar' },
   // { icon: Settings, label: 'Settings', path: '/settings' },
