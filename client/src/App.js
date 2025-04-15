@@ -60,6 +60,7 @@ import { PaymentReminders } from "./components/admin/Payments_Invoicing/PaymentR
 import ClientsDashboard from "./components/admin/clientdetails/ClientsDashboard";
 import ProjectsDashboard from "./components/admin/projects/ProjectsDashboard";
 import ProjectDetails from "./components/admin/projects/ProjectDetails";
+import { EmployeesDashboard } from "./components/admin/employeedetails/EmployeesDashboard";
 // import ProposalDashboard from "./components/admin/proposal/ProposalDashboard";
 
 function App() {
@@ -117,7 +118,7 @@ function App() {
           <Route path="/" element={<AdminLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="lead" element={<Lead />} />
-            <Route path="employeedetails" element={<EmployeeDetailsComponent />} />
+            <Route path="/employeedetails" element={<EmployeesDashboard />} />
             <Route path="/clients" element={<ClientsDashboard />} />
 
             <Route path="/projects" element={<ProjectsDashboard />} />
