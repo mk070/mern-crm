@@ -8,8 +8,6 @@ const bodyParser = require('body-parser');
 // const { start } = require('./scheduler'); // Import the start function from scheduler
 
 // start();
-
-
 const userRoutes = require("./routes/users");
 const employeeRoutes = require("./routes/employee");
 const adminRoutes = require("./routes/admin");
@@ -33,6 +31,7 @@ const XRoutes = require('./routes/twitter'); // Add this line
 const instagramRouter = require('./routes/instagram');
 const  Chatbot  = require("./routes/chatbot");
 const  generateproposal  = require("./routes/generate_proposal");
+const oauthRoutes = require('./routes/oauthRoutes');
 
 
 
@@ -87,6 +86,9 @@ app.use("/api/project",Project)
 app.use("/api/chatbot",Chatbot)
 
 app.use("/api/generate-proposal",generateproposal)
+
+//oauth
+app.use('/api/oauth', oauthRoutes);
 
 //socailmedia
 app.use('/api/social/x', XRoutes); 

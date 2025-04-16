@@ -39,22 +39,62 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
   const [connectedAccounts, setConnectedAccounts] = useState(new Set());
   const [confirmDisconnect, setConfirmDisconnect] = useState(null);
 
+
   const handleConnect = async (platform) => {
     try {
-      // Simulated OAuth flow
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setConnectedAccounts(prev => new Set([...prev, platform.id]));
-      toast.success(`Successfully connected to ${platform.name}!`, {
-        icon: '✅',
-        style: {
-          borderRadius: '12px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
+      const oauthUrlMap = {
+        instagram: `https://api.instagram.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_INSTAGRAM_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`,
+        // You can add more platforms here later
+      };
+  
+      const authUrl = oauthUrlMap[platform.id];
+      if (!authUrl) {
+        toast.error('Unsupported platform selected.');
+        return;
+      }
+  
+      // Open OAuth flow in new tab
+      const oauthWindow = window.open(authUrl, '_blank', 'width=500,height=600');
+  
+      // Monitor popup close
+      const pollTimer = window.setInterval(async () => {
+        if (oauthWindow.closed) {
+          window.clearInterval(pollTimer);
+  
+          // Call backend to verify connection after popup completes
+          const res = await fetch(`/api/oauth/status?platform=${platform.id}`, {
+            method: 'GET',
+            credentials: 'include',
+          });
+  
+          const data = await res.json();
+  
+          if (res.ok && data.connected) {
+            setConnectedAccounts(prev => new Set([...prev, platform.id]));
+  
+            toast.success(`Successfully connected to ${platform.name}!`, {
+              icon: '✅',
+              style: {
+                borderRadius: '12px',
+                background: '#333',
+                color: '#fff',
+              },
+            });
+          } else {
+            toast.error('Connection failed. Please try again.', {
+              icon: '❌',
+              style: {
+                borderRadius: '12px',
+                background: '#333',
+                color: '#fff',
+              },
+            });
+          }
+        }
+      }, 1000);
     } catch (error) {
-      toast.error('Connection failed. Please try again.', {
+      console.error('OAuth connect error:', error);
+      toast.error('Something went wrong during OAuth connection.', {
         icon: '❌',
         style: {
           borderRadius: '12px',
@@ -64,6 +104,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
       });
     }
   };
+  
 
   const handleDisconnect = (platform) => {
     setConfirmDisconnect(platform);
