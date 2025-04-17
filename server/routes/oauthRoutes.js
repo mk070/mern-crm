@@ -3,7 +3,7 @@ const router = express.Router();
 const oauthController = require('../controllers/oauthController');
 
 // This is the Instagram redirect URI
-router.get('/instagram', oauthController.handleInstagramAuth);
+router.post('/instagram', oauthController.handleInstagramAuth);
 
 router.get('/status', oauthController.getConnectionStatus);
 
