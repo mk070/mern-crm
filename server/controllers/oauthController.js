@@ -12,7 +12,7 @@ exports.handleInstagramAuth = async (req, res) => {
     // Store in database - upsert to handle reconnections
     await OAuthToken.findOneAndUpdate(
       { 
-        userId: req.user.id,
+        userId: 1, // Replace with actual user ID from your auth system
         platform: 'instagram'
       },
       {
