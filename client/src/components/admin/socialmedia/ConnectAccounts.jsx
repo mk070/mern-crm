@@ -104,7 +104,8 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
       console.log('Client ID:', process.env.REACT_APP_INSTAGRAM_CLIENT_ID);
       console.log('Redirect URI:', process.env.REACT_APP_INSTAGRAM_REDIRECT_URI);
       // Construct the OAuth URL
-      const authUrl = `https://api.instagram.com/oauth/authorize?client_id=${process.env.REACT_APP_INSTAGRAM_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_INSTAGRAM_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+      // const authUrl = `https://api.instagram.com/oauth/authorize?client_id=${process.env.REACT_APP_INSTAGRAM_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_INSTAGRAM_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+      const authUrl = `https://www.instagram.com/oauth/authorize?enable_fb_login=0&force_authentication=1&client_id=${process.env.REACT_APP_INSTAGRAM_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_INSTAGRAM_REDIRECT_URI}&response_type=code&scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights`;
       
       // Open OAuth flow in new window
       const width = 500;
