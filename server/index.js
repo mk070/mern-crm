@@ -32,6 +32,7 @@ const instagramRouter = require('./routes/instagram');
 const  Chatbot  = require("./routes/chatbot");
 const  generateproposal  = require("./routes/generate_proposal");
 const oauthRoutes = require('./routes/oauthRoutes');
+const proposalTemplateRoutes = require('./routes/proposalTemplates');
 
 
 
@@ -47,6 +48,8 @@ mongoose
   });
 
 //middlewares
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(express.json());
 app.use(cors({
@@ -93,6 +96,10 @@ app.use('/api/oauth', oauthRoutes);
 //socailmedia
 app.use('/api/social/x', XRoutes); 
 app.use('/api/social/instagram', instagramRouter);
+
+// proposal templates
+app.use('/api/proposal-templates', proposalTemplateRoutes);
+
 
 
 app.listen(`${process.env.PORT}` ,()=>{

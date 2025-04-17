@@ -10,7 +10,7 @@ import {
 import HomePage from "./components/home/HomePage";
 import CRMLogin from "./components/role/CRMLogin";
 import UserLogin from "./components/user/UserLogin";
-import AdminLogin from "./components/admin/Admin";
+import AdminLogin from "./components/admin/AdminLogin";
 import EmployeeLogin from "./components/employee/EmployeeLogin";
 
 

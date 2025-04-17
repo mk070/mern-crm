@@ -6,7 +6,6 @@ import TaskItem from '@tiptap/extension-task-item';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
-import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import html2pdf from 'html2pdf.js';
 import ProposalTemplates from './ProposalTemplates';
@@ -22,7 +21,7 @@ const TEMPLATES = {
   deliverables: `# Project Deliverables\n\n1. ## Main Deliverable 1\n   - Sub-item 1\n   - Sub-item 2\n\n2. ## Main Deliverable 2\n   - Sub-item 1\n   - Sub-item 2`,
 };
 
-const ProposalBuilder = () => {
+const ProposalPage = () => {
   const [title, setTitle] = useState('Untitled Proposal');
   const [showTemplates, setShowTemplates] = useState(false);
   const [status, setStatus] = useState('draft');
@@ -57,6 +56,7 @@ const ProposalBuilder = () => {
       toast.success('Template applied successfully!');
     }
   }, [editor]);
+  
 
   const handleSectionClick = useCallback((sectionId) => {
     if (editor) {
@@ -160,6 +160,8 @@ const ProposalBuilder = () => {
 
       {showTemplates && (
         <ProposalTemplates
+          clientInfo={clientInfo}
+    
           onSelect={handleTemplateSelect}
           onClose={() => setShowTemplates(false)}
         />
@@ -168,4 +170,4 @@ const ProposalBuilder = () => {
   );
 };
 
-export default ProposalBuilder;
+export default ProposalPage;

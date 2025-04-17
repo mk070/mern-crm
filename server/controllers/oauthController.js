@@ -1,48 +1,57 @@
-const oauthService = require('../services/oauthService');
+// controllers/oauthController.js
+const { exchangeInstagramCode, refreshInstagramToken } = require('../services/oauthService');
 const OAuthToken = require('../models/OAuthToken');
 
-exports.instagramCallback = async (req, res) => {
+exports.handleInstagramAuth = async (req, res) => {
   try {
-    const { code } = req.query;
-    const userId = req.user.id; // get this from JWT/session
-    const redirectUri = process.env.INSTAGRAM_REDIRECT_URI;
-
-    const tokenData = await oauthService.exchangeInstagramCode(code, redirectUri);
-
-    await oauthService.saveOAuthToken({
-      userId,
+    const { code } = req.body;
+    
+    // Exchange code for tokens
+    const tokenData = await exchangeInstagramCode(code);
+    
+    // Store in database
+    await OAuthToken.create({
+      userId: req.user.id, // Get from your auth system
       platform: 'instagram',
       accessToken: tokenData.access_token,
-      refreshToken: tokenData.refresh_token,
-      expiresIn: tokenData.expires_in,
+      platformUserId: tokenData.user_id,
+      platformUsername: tokenData.username,
+      expiresAt: tokenData.expires_at,
     });
-
-    res.redirect(`${process.env.FRONTEND_URL}/connected?platform=instagram`);
-  } catch (err) {
-    console.error('Instagram OAuth Error:', err);
-    res.status(500).json({ error: 'OAuth failed' });
+    
+    res.status(200).json({ 
+      success: true,
+      message: 'Instagram connected successfully' 
+    });
+  } catch (error) {
+    console.error('Instagram auth error:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Failed to authenticate with Instagram' 
+    });
   }
 };
 
-
-exports.checkOAuthStatus = async (req, res) => {
+exports.getConnectionStatus = async (req, res) => {
   try {
     const { platform } = req.query;
-    const userId = req.user?.id; // Ensure you have authentication middleware
+    const userId = req.user.id; // Get from your auth system
+    
+    const connection = await OAuthToken.findOne({
+      userId,
+      platform
+    });
 
-    if (!userId || !platform) {
-      return res.status(400).json({ connected: false });
+    if (!connection) {
+      return res.status(404).json({
+      connected: false,
+      message: 'No connection found for the specified platform'
+      });
     }
-
-    const token = await OAuthToken.findOne({ userId, platform });
-
-    if (token) {
-      return res.status(200).json({ connected: true });
-    } else {
-      return res.status(200).json({ connected: false });
-    }
+    res.status(200).json({
+      connected: !!connection
+    });
   } catch (error) {
-    console.error('OAuth status check failed:', error);
-    res.status(500).json({ connected: false });
+    res.status(500).json({ error: 'Failed to check connection status' });
   }
 };

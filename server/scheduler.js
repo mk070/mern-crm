@@ -31,30 +31,30 @@ const fileExists = async (filePath) => {
     }
 };
 
-const serializeSession = async () => {
-    const state = await ig.state.serialize();
-    delete state.constants; // Remove unnecessary constants to reduce file size
-    await writeFileAsync(sessionFilePath, JSON.stringify(state));
-};
+// const serializeSession = async () => {
+//     const state = await ig.state.serialize();
+//     delete state.constants; // Remove unnecessary constants to reduce file size
+//     await writeFileAsync(sessionFilePath, JSON.stringify(state));
+// };
 
-const deserializeSession = async () => {
-    if (await fileExists(sessionFilePath)) {
-        const sessionData = await readFileAsync(sessionFilePath, 'utf-8');
-        await ig.state.deserialize(JSON.parse(sessionData));
-    }
-};
+// const deserializeSession = async () => {
+//     if (await fileExists(sessionFilePath)) {
+//         const sessionData = await readFileAsync(sessionFilePath, 'utf-8');
+//         await ig.state.deserialize(JSON.parse(sessionData));
+//     }
+// };
 
-const loginToInstagram = async () => {
-    try {
-        await ig.state.generateDevice(process.env.IG_USERNAME);
-        await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
+// const loginToInstagram = async () => {
+//     try {
+//         await ig.state.generateDevice(process.env.IG_USERNAME);
+//         await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
 
         
-    } catch (error) {
-        console.error('Error logging in to Instagram:', error);
-        throw error; // Rethrow the error to handle it in the calling function
-    }
-};
+//     } catch (error) {
+//         console.error('Error logging in to Instagram:', error);
+//         throw error; // Rethrow the error to handle it in the calling function
+//     }
+// };
 
 const downloadFileFromS3 = async (url) => {
     const key = url.split('.amazonaws.com/')[1];
@@ -149,18 +149,18 @@ const processScheduledPosts = async () => {
 };
 
 // Set up an interval to check for scheduled posts every minute
-setInterval(async () => {
-    try {
-        const hasScheduledPosts = await Post.exists({ scheduledTime: { $lte: new Date() } });
-        if (hasScheduledPosts) {
-            await processScheduledPosts();
-        } else {
-            console.log('No scheduled posts to process.');
-        }
-    } catch (error) {
-        console.error('Error checking scheduled posts:', error);
-    }
-}, 10000); // 60000 ms = 1 minute
+// setInterval(async () => {
+//     try {
+//         const hasScheduledPosts = await Post.exists({ scheduledTime: { $lte: new Date() } });
+//         if (hasScheduledPosts) {
+//             await processScheduledPosts();
+//         } else {
+//             console.log('No scheduled posts to process.');
+//         }
+//     } catch (error) {
+//         console.error('Error checking scheduled posts:', error);
+//     }
+// }, 10000); // 60000 ms = 1 minute
 
 module.exports = {
     processScheduledPosts,

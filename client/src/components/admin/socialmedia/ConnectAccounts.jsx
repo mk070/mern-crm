@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { X, AlertCircle, CheckCircle2, Instagram, Facebook, Building, Twitter } from 'lucide-react';
@@ -38,77 +39,140 @@ const socialPlatforms = [
 export default function ConnectAccountsModal({ isOpen, onClose }) {
   const [connectedAccounts, setConnectedAccounts] = useState(new Set());
   const [confirmDisconnect, setConfirmDisconnect] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
 
-  const handleConnect = async (platform) => {
-    try {
-      const oauthUrlMap = {
-        instagram: `https://api.instagram.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_INSTAGRAM_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`,
-        // You can add more platforms here later
-      };
-  
-      const authUrl = oauthUrlMap[platform.id];
-      if (!authUrl) {
-        toast.error('Unsupported platform selected.');
-        return;
+  // Fetch existing connections on component mount
+  useEffect(() => {
+    const fetchConnections = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get('/api/social/connections');
+        
+        if (response.data.connections) {
+          const connected = new Set(
+            response.data.connections.map(conn => conn.platform)
+          );
+          setConnectedAccounts(connected);
+        }
+      } catch (error) {
+        console.error('Failed to fetch connections:', error);
+        toast.error('Failed to load your connected accounts');
+      } finally {
+        setIsLoading(false);
       }
-  
-      // Open OAuth flow in new tab
-      const oauthWindow = window.open(authUrl, '_blank', 'width=500,height=600');
-  
-      // Monitor popup close
+    };
+
+    fetchConnections();
+  }, []);
+
+  // Handle window message events from OAuth popup
+  useEffect(() => {
+
+    const handleOAuthMessage = async (event) => {
+      // Validate origin for security
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'oauth_complete') {
+        const { platform, success } = event.data;
+        
+        if (success) {
+          // Refresh connections list
+          const response = await axios.get('/api/social/connections');
+          if (response.data.connections) {
+            const connected = new Set(
+              response.data.connections.map(conn => conn.platform)
+            );
+            setConnectedAccounts(connected);
+          }
+          
+          toast.success(`Successfully connected to ${platform}!`);
+        } else {
+          toast.error(`Failed to connect to ${platform}. Please try again.`);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleOAuthMessage);
+    return () => window.removeEventListener('message', handleOAuthMessage);
+  }, []);
+
+  // Initiate OAuth connection
+   const handleConnect = async () => {
+    try {
+      console.log('Connecting to Instagram...');
+      console.log('Client ID:', process.env.REACT_APP_INSTAGRAM_CLIENT_ID);
+      console.log('Redirect URI:', process.env.REACT_APP_INSTAGRAM_REDIRECT_URI);
+      // Construct the OAuth URL
+      const authUrl = `https://api.instagram.com/oauth/authorize?client_id=${process.env.REACT_APP_INSTAGRAM_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_INSTAGRAM_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+      
+      // Open OAuth flow in new window
+      const width = 500;
+      const height = 600;
+      const left = window.screenX + (window.outerWidth - width) / 2;
+      const top = window.screenY + (window.outerHeight - height) / 2;
+      
+      const oauthWindow = window.open(
+        authUrl,
+        'instagram-oauth',
+        `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=no,status=no`
+      );
+      
+      // Set up polling to check if the window was closed
+      let pollCount = 0;
+      const maxPolls = 300; // 5 minutes at 1 poll/sec
+      
       const pollTimer = window.setInterval(async () => {
-        if (oauthWindow.closed) {
+        if (oauthWindow.closed || pollCount > maxPolls) {
           window.clearInterval(pollTimer);
-  
-          // Call backend to verify connection after popup completes
-          const res = await fetch(`/api/oauth/status?platform=${platform.id}`, {
-            method: 'GET',
-            credentials: 'include',
-          });
-  
-          const data = await res.json();
-  
-          if (res.ok && data.connected) {
-            setConnectedAccounts(prev => new Set([...prev, platform.id]));
-  
-            toast.success(`Successfully connected to ${platform.name}!`, {
-              icon: '✅',
-              style: {
-                borderRadius: '12px',
-                background: '#333',
-                color: '#fff',
-              },
-            });
-          } else {
-            toast.error('Connection failed. Please try again.', {
-              icon: '❌',
-              style: {
-                borderRadius: '12px',
-                background: '#333',
-                color: '#fff',
-              },
-            });
+          
+          if (pollCount > maxPolls) {
+            toast.error('Connection timed out. Please try again.');
+            return;
+          }
+          
+          // Check if connection was successful
+          try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/oauth/status?platform=instagram`);
+            if (response.data.connections?.some(conn => conn.platform === 'instagram')) {
+              setConnectedAccounts(prev => new Set([...prev, 'instagram']));
+              // setIsConnected(true);
+
+              toast.success('Successfully connected to Instagram!');
+            }
+          } catch (error) {
+            console.error('Failed to verify Instagram connection:', error);
           }
         }
+        pollCount++;
       }, 1000);
     } catch (error) {
-      console.error('OAuth connect error:', error);
-      toast.error('Something went wrong during OAuth connection.', {
-        icon: '❌',
-        style: {
-          borderRadius: '12px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
+      console.error('OAuth connection error:', error);
+      toast.error('Failed to initiate Instagram connection');
     }
   };
-  
 
-  const handleDisconnect = (platform) => {
-    setConfirmDisconnect(platform);
+  // Disconnect social media account
+  const handleDisconnect = async () => {
+    try {
+      await axios.delete('/api/social/connections/instagram');
+      setConnectedAccounts(prev => {
+        const updated = new Set([...prev]);
+        updated.delete('instagram');
+        return updated;
+      });
+      toast.success('Instagram account disconnected successfully');
+    } catch (error) {
+      console.error('Disconnect error:', error);
+      toast.error('Failed to disconnect Instagram account');
+    }
   };
+
+  const isConnected = connectedAccounts.has('instagram');
+
+  // const handleDisconnect = (platform) => {
+  //   setConfirmDisconnect(platform);
+  // };
 
   const confirmDisconnection = async () => {
     try {
