@@ -156,7 +156,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
   // Disconnect social media account
   const handleDisconnect = async () => {
     try {
-      await axios.delete('/api/social/connections/instagram');
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/oauth/connections/instagram`);
       setConnectedAccounts(prev => {
         const updated = new Set([...prev]);
         updated.delete('instagram');
