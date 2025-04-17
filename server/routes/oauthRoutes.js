@@ -7,5 +7,8 @@ router.get('/instagram', oauthController.handleInstagramAuth);
 
 router.get('/status', oauthController.getConnectionStatus);
 
+router.get('/connections', oauthController.getConnections);
+
+router.delete('/connections/:platform', oauthController.removeConnection);
 
 module.exports = router;

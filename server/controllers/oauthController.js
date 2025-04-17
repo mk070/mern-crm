@@ -9,15 +9,22 @@ exports.handleInstagramAuth = async (req, res) => {
     // Exchange code for tokens
     const tokenData = await exchangeInstagramCode(code);
     
-    // Store in database
-    await OAuthToken.create({
-      userId: req.user.id, // Get from your auth system
-      platform: 'instagram',
-      accessToken: tokenData.access_token,
-      platformUserId: tokenData.user_id,
-      platformUsername: tokenData.username,
-      expiresAt: tokenData.expires_at,
-    });
+    // Store in database - upsert to handle reconnections
+    await OAuthToken.findOneAndUpdate(
+      { 
+        userId: req.user.id,
+        platform: 'instagram'
+      },
+      {
+        accessToken: tokenData.access_token,
+        platformUserId: tokenData.user_id,
+        platformUsername: tokenData.username,
+        expiresAt: tokenData.expires_at,
+        updatedAt: new Date()
+      },
+      { upsert: true, new: true }
+    );
+    
     
     res.status(200).json({ 
       success: true,
@@ -53,5 +60,48 @@ exports.getConnectionStatus = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: 'Failed to check connection status' });
+  }
+};
+
+// Get user's connected accounts
+exports.getConnections = async (req, res) => {
+  try {
+    const connections = await OAuthToken.find(
+      { userId: req.user.id },
+      'platform platformUsername expiresAt createdAt'
+    );
+    
+    res.status(200).json({ 
+      connections: connections.map(conn => ({
+        platform: conn.platform,
+        username: conn.platformUsername,
+        connectedAt: conn.createdAt,
+        expiresAt: conn.expiresAt
+      }))
+    });
+  } catch (error) {
+    console.error('Error fetching connections:', error);
+    res.status(500).json({ message: 'Failed to retrieve connected accounts' });
+  }
+};
+
+// Remove a connection
+exports.removeConnection = async (req, res) => {
+  try {
+    const { platform } = req.params;
+    
+    const result = await OAuthToken.deleteOne({
+      userId: req.user.id,
+      platform
+    });
+    
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: `No connected ${platform} account found` });
+    }
+    
+    res.status(200).json({ message: `${platform} account disconnected successfully` });
+  } catch (error) {
+    console.error(`Error removing ${req.params.platform} connection:`, error);
+    res.status(500).json({ message: `Failed to disconnect ${req.params.platform} account` });
   }
 };

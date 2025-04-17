@@ -47,7 +47,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
     const fetchConnections = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('/api/social/connections');
+        const response = await axios.get('/api/oauth/connections');
         
         if (response.data.connections) {
           const connected = new Set(
