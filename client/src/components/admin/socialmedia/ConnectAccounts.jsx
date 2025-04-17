@@ -47,8 +47,9 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
     const fetchConnections = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('/api/oauth/connections');
-        console
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/oauth/connections`);
+        console.log('Connections response:', response.data);
+        
         if (response.data.connections) {
           const connected = new Set(
             response.data.connections.map(conn => conn.platform)
@@ -267,7 +268,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
                                 {platform.name}
                               </h3>
                               <div className="flex items-center">
-                                {connectedAccounts.has(platform.name) ? (
+                                {connectedAccounts.has(platform.id) ? (
                                   <span className="flex items-center text-sm font-medium text-status-success">
                                     <CheckCircle2 className="h-4 w-4 mr-1" />
                                     Connected
