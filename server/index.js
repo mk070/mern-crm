@@ -53,7 +53,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(express.json());
 
-const allowedOrigins = [`${process.env.FRONTEND_URL}`];
+const allowedOrigins = [process.env.FRONTEND_URL || 'https://mern-crm-seven.vercel.app/'];
 
 app.use(cors({
   origin: function (origin, callback) {
