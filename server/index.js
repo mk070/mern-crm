@@ -52,12 +52,22 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(express.json());
+
+const allowedOrigins = [`${process.env.FRONTEND_URL}`];
+
 app.use(cors({
-  origin: ['http://localhost:3000', '*'], // Allow requests from localhost:3000 and any other origin
-  optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'OPTIONS','PUT','DELETE'], // Allowable methods
-  allowedHeaders: ['Authorization', 'Content-Type'], // Allowable headers
-}));app.use(bodyParser.json());
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Allow cookies/auth headers
+  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
