@@ -1,61 +1,96 @@
-// src/pages/OAuthCallback.jsx
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function OAuthCallback() {
   const [status, setStatus] = useState('Processing authentication...');
+  const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   
   useEffect(() => {
     async function handleCallback() {
-      // Parse the URL query parameters
-      const searchParams = new URLSearchParams(location.search);
-      const code = searchParams.get('code');
-      const error = searchParams.get('error');
-      
-      if (error) {
-        setStatus(`Authentication failed: ${error}`);
-        return;
-      }
-      
-      if (code) {
-        try {
-          setStatus('Connecting to Instagram...');
-          
-          // Send code to backend
-          const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/oauth/instagram`,
-            { code }, // This is the POST body
-            {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          );
-          
-          if (response.status === 200) {
-            setStatus('Authentication successful!');
-            
-            // Success handling
-            if (window.opener) {
-              // If opened as popup
-              window.opener.postMessage({ type: 'INSTAGRAM_AUTH_SUCCESS', data: response.data }, window.origin);
-              setTimeout(() => window.close(), 1000); // Close popup after a brief delay
-            } else {
-              // If direct navigation
-              setTimeout(() => navigate('/dashboard'), 1000);
-            }
-          } else {
-            throw new Error('Server returned an error');
-          }
-        } catch (error) {
-          console.error('Authentication error:', error);
-          setStatus(`Authentication failed: ${error.message || 'Unknown error'}`);
+      try {
+        // Parse the URL query parameters
+        const searchParams = new URLSearchParams(location.search);
+        const code = searchParams.get('code');
+        const urlError = searchParams.get('error');
+        
+        // Strip out the #_ if present in the code
+        const cleanCode = code ? code.replace(/#_$/, '') : null;
+        
+        if (urlError) {
+          setStatus(`Authentication failed: ${urlError}`);
+          setError(urlError);
+          return;
         }
-      } else {
-        setStatus('No authentication code provided');
+        
+        if (!cleanCode) {
+          setStatus('No authentication code provided');
+          setError('Missing code parameter');
+          return;
+        }
+        
+        setStatus('Connecting to Instagram...');
+        
+        // Server URL from environment with fallback
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+        
+        // Send code to backend
+        const response = await axios.post(
+          `${apiUrl}/api/oauth/instagram`,
+          { code: cleanCode }, 
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            // Add timeout to prevent indefinite waiting
+            timeout: 10000,
+          }
+        );
+        
+        if (response.data && response.status === 200) {
+          setStatus('Authentication successful!');
+          
+          // Store tokens or user data in localStorage/sessionStorage if needed
+          if (response.data.accessToken) {
+            localStorage.setItem('instagram_access_token', response.data.accessToken);
+          }
+          
+          // Success handling
+          if (window.opener) {
+            // If opened as popup
+            window.opener.postMessage({ 
+              type: 'INSTAGRAM_AUTH_SUCCESS', 
+              data: response.data 
+            }, window.origin);
+            setTimeout(() => window.close(), 1500); // Close popup after a brief delay
+          } else {
+            // If direct navigation
+            setTimeout(() => navigate('/dashboard'), 1500);
+          }
+        } else {
+          throw new Error('Invalid server response');
+        }
+      } catch (err) {
+        console.error('Authentication error:', err);
+        
+        // Better error handling with more specific messages
+        let errorMessage = 'Unknown error occurred';
+        if (err.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          errorMessage = `Server error: ${err.response.status} - ${err.response.data.message || err.response.statusText}`;
+        } else if (err.request) {
+          // The request was made but no response was received
+          errorMessage = 'No response from server. Please check your internet connection.';
+        } else {
+          // Something happened in setting up the request
+          errorMessage = err.message;
+        }
+        
+        setStatus(`Authentication failed: ${errorMessage}`);
+        setError(errorMessage);
       }
     }
     
@@ -63,17 +98,26 @@ export default function OAuthCallback() {
   }, [location, navigate]);
   
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-neutral-bg">
-      <div className="p-8 bg-neutral-surface rounded-xl shadow-lg max-w-md w-full text-center">
-        <div className="mb-4">
-          <div className="w-16 h-16 mx-auto border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        </div>
-        <h1 className="text-xl font-semibold text-neutral-text-primary mb-2">
+    <div className="oauth-callback-container">
+      <div className="oauth-callback-box">
+        <h2>Instagram Authorization</h2>
+        <div className={`status-message ${error ? 'error' : ''}`}>
           {status}
-        </h1>
-        <p className="text-neutral-text-secondary">
-          Please wait while we complete the authentication process...
-        </p>
+        </div>
+        {!error && (
+          <div className="loading-indicator">
+            <div className="spinner"></div>
+            <p>Please wait while we complete the authentication process...</p>
+          </div>
+        )}
+        {error && (
+          <button 
+            className="retry-button"
+            onClick={() => window.location.href = '/connect-instagram'}
+          >
+            Try Again
+          </button>
+        )}
       </div>
     </div>
   );
