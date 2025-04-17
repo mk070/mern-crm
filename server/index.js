@@ -55,15 +55,22 @@ app.use(express.json());
 
 const allowedOrigins = [process.env.FRONTEND_URL || 'https://mern-crm-seven.vercel.app/'];
 
+app.use((req, res, next) => {
+  console.log("Allowed origins:", allowedOrigins);
+  console.log("Request origin:", req.headers.origin);
+  next();
+});
+
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.error("CORS rejected:", origin);
+      callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // Allow cookies/auth headers
+  credentials: true,
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
