@@ -5,6 +5,7 @@ exports.exchangeInstagramCode = async (code) => {
   // Step 1: Exchange code for short-lived token
   const tokenResponse = await axios.post(
     'https://api.instagram.com/oauth/access_token',
+    
     new URLSearchParams({
       client_id: process.env.INSTAGRAM_CLIENT_ID,
       client_secret: process.env.INSTAGRAM_CLIENT_SECRET,

@@ -61,6 +61,7 @@ import ClientsDashboard from "./components/admin/clientdetails/ClientsDashboard"
 import ProjectsDashboard from "./components/admin/projects/ProjectsDashboard";
 import ProjectDetails from "./components/admin/projects/ProjectDetails";
 import { EmployeesDashboard } from "./components/admin/employeedetails/EmployeesDashboard";
+import OAuthCallback from "./components/admin/socialmedia/utils/oauth-callback";
 // import ProposalDashboard from "./components/admin/proposal/ProposalDashboard";
 
 function App() {
@@ -148,6 +149,8 @@ function App() {
           </Route>
 
           <Route path="/" element={<HomePage />} />
+
+          <Route path="/oauth-callback" element={<OAuthCallback />} />
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/otherdetails" element={<OtherDetails />} />
