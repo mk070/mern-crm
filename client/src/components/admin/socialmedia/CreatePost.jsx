@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Instagram,
@@ -12,9 +12,10 @@ import {
   Send,
   Link as LinkIcon,
 } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
-
+import api from '../../../api/axios'; // Adjust the import based on your project structure
 const platforms = [
   {
     id: 'instagram',
@@ -51,17 +52,48 @@ export default function CreatePost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [scheduledDate, setScheduledDate] = useState('');
   const [scheduledTime, setScheduledTime] = useState('');
+  const [connectedAccounts, setConnectedAccounts] = useState([]);
   const fileInputRef = useRef(null);
+
+  // Fetch connected accounts on component mount
+  useEffect(() => {
+    const fetchConnectedAccounts = async () => {
+      try {
+        const response = await api.get('/api/oauth/connections');
+        console.log('Connected accounts:', response);
+        setConnectedAccounts(response.data.connections);
+      } catch (error) {
+        console.error('Error fetching connected accounts:', error);
+        toast.error('Failed to load connected accounts');
+      }
+    };
+    
+    fetchConnectedAccounts();
+  }, []);
 
   const handlePlatformToggle = (platformId) => {
     const newSelected = new Set(selectedPlatforms);
+    console.log('Toggling platform:', platformId);
     if (newSelected.has(platformId)) {
       newSelected.delete(platformId);
     } else {
+      // Check if platform is connected
+      const isConnected = connectedAccounts.some(
+        connection => connection.platform === platformId
+      );
+      
+      console.log('Is connected:', isConnected);
+      // If not connected, show error message
+      if (!isConnected) {
+        toast.error(`Please connect your ${platformId} account first`);
+        return;
+      }
+      
       newSelected.add(platformId);
     }
     setSelectedPlatforms(newSelected);
   };
+
 
   const handleMediaUpload = (event) => {
     const file = event.target.files[0];
@@ -102,7 +134,27 @@ export default function CreatePost() {
     }
   };
 
-  const handleSubmit = async (type) => {
+
+  // const generateAICaption = async () => {
+  //   setIsGeneratingCaption(true);
+  //   try {
+  //     const response = await axios.post('/api/ai/generate-caption', {
+  //       mediaType: media?.type || 'general',
+  //       platforms: Array.from(selectedPlatforms)
+  //     });
+      
+  //     setPostContent(response.data.caption);
+  //     toast.success('AI caption generated!');
+  //   } catch (error) {
+  //     console.error('AI caption error:', error);
+  //     toast.error('Failed to generate caption. Please try again.');
+  //   } finally {
+  //     setIsGeneratingCaption(false);
+  //   }
+  // };
+
+
+  const handleSubmit = async (postType) => {
     if (selectedPlatforms.size === 0) {
       toast.error('Please select at least one platform');
       return;
@@ -119,30 +171,55 @@ export default function CreatePost() {
       return;
     }
 
-    if (type === 'schedule' && (!scheduledDate || !scheduledTime)) {
+    if (postType === 'schedule' && (!scheduledDate || !scheduledTime)) {
       toast.error('Please select both date and time for scheduled post');
       return;
     }
 
     setIsSubmitting(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const formData = new FormData();
+      formData.append('content', postContent);
+      formData.append('platforms', JSON.stringify(Array.from(selectedPlatforms)));
+      
+      if (media) {
+        formData.append('media', media.file);
+      }
+      
+      if (postType === 'schedule') {
+        formData.append('scheduledDate', scheduledDate);
+        formData.append('scheduledTime', scheduledTime);
+      }
+      
+      // Different endpoints based on action type
+      const endpoint = postType === 'now' ? '/api/posts/publish' : '/api/posts/schedule';
+      
+      const response = await api.post(endpoint, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       
       toast.success(
-        type === 'now'
+        postType === 'now'
           ? 'Post published successfully!'
           : 'Post scheduled successfully!'
       );
       
-      navigate('/socialmedia/scheduled');
+      // Navigate to appropriate page based on action
+      navigate(postType === 'now' ? '/socialmedia/posts' : '/socialmedia/scheduled');
     } catch (error) {
-      toast.error('Failed to publish post. Please try again.');
+      console.error('Post submission error:', error.response?.data || error);
+      toast.error(error.response?.data?.message || 'Failed to process your post. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
+    <>
+    <Toaster position="top-right" />
+
     <div className="max-w-4xl mx-auto px-4 py-6">
       <div className="bg-neutral-surface rounded-xl shadow-sm border border-neutral-border">
         <div className="p-6">
@@ -333,5 +410,7 @@ export default function CreatePost() {
         </div>
       </div>
     </div>
+
+    </>
   );
 }

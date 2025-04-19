@@ -36,7 +36,8 @@ const  Chatbot  = require("./routes/chatbot");
 const  generateproposal  = require("./routes/generate_proposal");
 const oauthRoutes = require('./routes/oauthRoutes');
 const proposalTemplateRoutes = require('./routes/proposalTemplates');
-const auth = require("./middleware/auth");
+const auth = require("./middlewares/auth");
+const posts = require('./routes/posts');
 
 
 //Database Connection
@@ -124,6 +125,8 @@ app.use("/api/generate-proposal",generateproposal)
 app.use('/api/oauth', oauthRoutes);
 
 //socailmedia
+app.use('/api/posts', posts); 
+app.use('/api/social/instagram', instagramRouter); 
 app.use('/api/social/x', XRoutes); 
 app.use('/api/social/instagram', instagramRouter);
 

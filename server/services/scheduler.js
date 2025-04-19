@@ -1,5 +1,5 @@
 const { IgApiClient } = require('instagram-private-api');
-const Post = require('./models/Post');
+const Post = require('../models/Post');
 const { S3Client, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const fs = require('fs').promises;
 const path = require('path');

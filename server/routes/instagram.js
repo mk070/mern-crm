@@ -1,25 +1,20 @@
-// backend/routes/instagram.js
+// routes/instagram.js
 const express = require('express');
-const upload = require('../upload');
 const router = express.Router();
-const reelController = require('../controllers/reelController');
-// const storyController = require('../controllers/storyController');
-const postController = require('../controllers/postController');
+const instagramController = require('../controllers/instagramController');
+const upload = require('../middlewares/upload');
+const auth = require('../middlewares/auth');
 
-// Routes for Reels
-router.post('/reel/create-reel', reelController.createReel);
-// router.get('/reels', reelController.getAllReels);
-// Add more routes for reels as needed
+// Create an Instagram post immediately
+router.post('/publish', auth, upload.single('media'), instagramController.publishPost);
 
-// Routes for Stories
-// router.post('/stories/create', storyController.createStory);
-// router.get('/stories', storyController.getAllStories);
-// Add more routes for stories as needed
+// Schedule an Instagram post for later
+router.post('/schedule', auth, upload.single('media'), instagramController.schedulePost);
 
-// Routes for Posts
-router.post('/post/create-post', upload.single('media'), postController.createPost);
-router.post('/post/generatecaption',upload.single('media'), postController.caption);
-// router.get('/posts', postController.getAllPosts);
-// Add more routes for posts as needed
+// Get user's Instagram account details
+router.get('/account', auth, instagramController.getAccountDetails);
+
+// Disconnect Instagram account
+// router.delete('/disconnect', auth, instagramController.disconnectAccount);
 
 module.exports = router;

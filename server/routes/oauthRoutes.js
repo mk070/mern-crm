@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const oauthController = require('../controllers/oauthController');
-const auth = require('../middleware/auth'); // Assuming you have an auth middleware
+const auth = require('../middlewares/auth'); // Assuming you have an auth middleware
 
 // This is the Instagram redirect URI
 router.post('/instagram', auth,oauthController.handleInstagramAuth);

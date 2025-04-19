@@ -4,6 +4,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { X, AlertCircle, CheckCircle2, Instagram, Facebook, Building, Twitter } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { Navigate } from 'react-router-dom';
+import api from '../../../api/axios'; // Adjust the import based on your project structure
 
 const socialPlatforms = [
   {
@@ -40,6 +42,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
   const [connectedAccounts, setConnectedAccounts] = useState(new Set());
   const [confirmDisconnect, setConfirmDisconnect] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
 
   axios.defaults.withCredentials = true;
 
@@ -80,7 +83,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
         
         if (success) {
           // Refresh connections list
-          const response = await axios.get('/api/social/connections');
+          const response = await api.get('/api/social/connections');
           if (response.data.connections) {
             const connected = new Set(
               response.data.connections.map(conn => conn.platform)
@@ -142,6 +145,8 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
               // setIsConnected(true);
 
               toast.success('Successfully connected to Instagram!');
+              window.location.href = '/socialmedia/connect'; // Redirect to login page
+
             }
           } catch (error) {
             console.error('Failed to verify Instagram connection:', error);
