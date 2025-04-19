@@ -56,26 +56,36 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(express.json());
 
+// Remove the trailing slash from your allowed origins
 const allowedOrigins = [process.env.FRONTEND_URL || 'https://mern-crm-seven.vercel.app'];
 
-app.use((req, res, next) => {
-  console.log("Allowed origins:", allowedOrigins);
-  console.log("Request origin:", req.headers.origin);
-  next();
-});
-
+// Better CORS configuration with more robust origin checking
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Log the origin for debugging
+    console.log("Request origin:", origin);
+    
+    // No origin (like for same-origin requests)
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    // Clean up origins for comparison (remove trailing slashes)
+    const normalizedOrigin = origin.replace(/\/$/, '');
+    const normalizedAllowedOrigins = allowedOrigins.map(o => o.replace(/\/$/, ''));
+    
+    if (normalizedAllowedOrigins.includes(normalizedOrigin)) {
       callback(null, true);
     } else {
       console.error("CORS rejected:", origin);
+      console.error("Allowed origins:", normalizedAllowedOrigins);
       callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['Set-Cookie'],
 }));
 
 
