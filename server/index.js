@@ -4,10 +4,13 @@ const app = express();
 const cors = require("cors");
 const mongoose=require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 // require('./scheduler');
 // const { start } = require('./scheduler'); // Import the start function from scheduler
 
 // start();
+app.use(cookieParser());
 const userRoutes = require("./routes/users");
 const employeeRoutes = require("./routes/employee");
 const adminRoutes = require("./routes/admin");
@@ -33,7 +36,7 @@ const  Chatbot  = require("./routes/chatbot");
 const  generateproposal  = require("./routes/generate_proposal");
 const oauthRoutes = require('./routes/oauthRoutes');
 const proposalTemplateRoutes = require('./routes/proposalTemplates');
-
+const auth = require("./middleware/auth");
 
 
 //Database Connection
@@ -90,7 +93,7 @@ app.use("/api/user_auth",UserauthRoutes);
 app.use("/api/admin",adminRoutes);
 app.use("/api/admin_auth",AdminAuthRoutes);
 app.use("/api/details",Detail);
-app.use("/api/lead",Lead);
+app.use("/api/lead", auth ,Lead);
 app.use("/api/userdetails",Userdetail);
 app.use("/api/count",Count);
 app.use("/api/clientcount",ClientCount);
@@ -101,7 +104,7 @@ app.use("/api/taskcount",Task)
 app.use("/api/otherdetails",OtherDetails)
 app.use("/api/query",Query)
 app.use("/api/product",Product)
-app.use("/api/project",Project)
+app.use("/api/project", Project)
 
 app.use("/api/chatbot",Chatbot)
 

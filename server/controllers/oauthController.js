@@ -12,7 +12,7 @@ exports.handleInstagramAuth = async (req, res) => {
     // Store in database - upsert to handle reconnections
     await OAuthToken.findOneAndUpdate(
       { 
-        userId: 1, // Replace with actual user ID from your auth system
+        userId: req.user.id, // Replace with actual user ID from your auth system
         platform: 'instagram'
       },
       {
@@ -42,7 +42,7 @@ exports.handleInstagramAuth = async (req, res) => {
 exports.getConnectionStatus = async (req, res) => {
   try {
     const { platform } = req.query;
-    const userId = 1; // Get from your auth system
+    const userId = req.user.id; // Get from your auth system
     
     const connection = await OAuthToken.findOne({
       userId,
@@ -67,7 +67,7 @@ exports.getConnectionStatus = async (req, res) => {
 exports.getConnections = async (req, res) => {
   try {
     const connections = await OAuthToken.find(
-      { userId: 1 }, // Replace with actual user ID from your auth system
+      { userId: req.user.id }, // Replace with actual user ID from your auth system
       'platform platformUsername expiresAt createdAt'
     );
     
@@ -91,7 +91,7 @@ exports.removeConnection = async (req, res) => {
     const { platform } = req.params;
     
     const result = await OAuthToken.deleteOne({
-      userId: 1,
+      userId: req.user.id,
       platform
     });
     

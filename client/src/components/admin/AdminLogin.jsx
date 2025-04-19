@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Lock, AlertCircle, ShieldCheck } from 'lucide-react';
 import axios from 'axios';
 import MainLayout from '../layout/MainLayout';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminLogin() {
   const [data, setData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isAnimated, setIsAnimated] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Add entrance animation after component mounts
@@ -23,14 +25,24 @@ export default function AdminLogin() {
     setError('');
   };
 
+  // Set up axios with credentials
+  axios.defaults.withCredentials = true;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const url = `${process.env.REACT_APP_API_URL}/api/admin_auth`;
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem('token', res.data);
-      window.location = '/dashboard';
+      const url = `${process.env.REACT_APP_API_URL}/api/admin_auth/login`;
+      const response = await axios.post(url, data);
+      if (response.data.success) {
+        
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+        // Redirect to dashboard
+        navigate('/dashboard');
+      } else {
+        setError(response.data.message || 'Login failed');
+      }
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setError(error.response.data.message);

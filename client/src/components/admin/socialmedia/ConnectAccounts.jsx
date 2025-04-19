@@ -41,6 +41,7 @@ export default function ConnectAccountsModal({ isOpen, onClose }) {
   const [confirmDisconnect, setConfirmDisconnect] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  axios.defaults.withCredentials = true;
 
   // Fetch existing connections on component mount
   useEffect(() => {

@@ -23,11 +23,12 @@ router.post('/lead', async (req, res) => {
   }
 });
 
+
 // Get All Leads
 router.get('/lead', async (req, res) => {
   try {
     const leads = await Lead.find();
-    res.send(leads);
+    res.send( leads);
   } catch (err) {
     res.status(500).send(err.message);
   }

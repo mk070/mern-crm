@@ -21,6 +21,7 @@ import {
   PlusCircle
 } from 'lucide-react';
 import { BiMoney } from 'react-icons/bi';
+import axios from 'axios';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
@@ -70,6 +71,19 @@ export default function Sidebar() {
   const isPathActive = (path) => {
     return location.pathname === path || location.pathname.startsWith(`${path}/`);
   };
+
+  const handleLogout = async (e) => { 
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/admin_auth/logout`, { withCredentials: true });
+      if (response.data.success) {
+        localStorage.removeItem('user');
+        window.location.href = '/adminlogin'; // Redirect to login page
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  }
 
   return (
     <div 
@@ -159,13 +173,13 @@ export default function Sidebar() {
         </ul>
 
         <div className="absolute bottom-4 left-0 right-0 px-4">
-          <Link
-            to="/logout"
+          <a
+            onClick={handleLogout}
             className="flex items-center gap-3 px-3 py-2 text-neutral-text-secondary hover:bg-neutral-bg hover:text-neutral-text-primary rounded-xl transition-all duration-200"
           >
             <LogOut className={`h-5 w-5 ${collapsed ? 'mx-auto' : ''}`} />
             {!collapsed && <span className="font-medium font-inter">Logout</span>}
-          </Link>
+          </a>
         </div>
       </nav>
     </div>

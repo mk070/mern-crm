@@ -57,6 +57,8 @@ export default function Leads() {
   useEffect(() => {
     fetchLeads();
   }, []);
+  
+  axios.defaults.withCredentials = true;
 
   const fetchLeads = async () => {
     try {

@@ -12,6 +12,9 @@ export default function OAuthCallback() {
   // Make sure your .env file has this set correctly
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
   
+  // Ensure axios sends cookies with requests
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     async function handleCallback() {
       try {
