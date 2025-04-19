@@ -125,7 +125,7 @@ app.use("/api/generate-proposal",generateproposal)
 app.use('/api/oauth', oauthRoutes);
 
 //socailmedia
-app.use('/api/posts', posts); 
+app.use('/api/posts',auth, posts); 
 app.use('/api/social/instagram', instagramRouter); 
 app.use('/api/social/x', XRoutes); 
 app.use('/api/social/instagram', instagramRouter);
