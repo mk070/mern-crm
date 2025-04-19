@@ -56,7 +56,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(express.json());
 
-const allowedOrigins = [process.env.FRONTEND_URL || 'https://mern-crm-seven.vercel.app/'];
+const allowedOrigins = [process.env.FRONTEND_URL || 'https://mern-crm-seven.vercel.app'];
 
 app.use((req, res, next) => {
   console.log("Allowed origins:", allowedOrigins);
@@ -66,7 +66,7 @@ app.use((req, res, next) => {
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       console.error("CORS rejected:", origin);

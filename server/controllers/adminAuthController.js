@@ -48,14 +48,16 @@ exports.login = async (req, res) => {
     user.lastLogin = new Date();
     await user.save();
 
+    const isProduction = process.env.NODE_ENV === "production";
+
     // Generate token
     const token = user.generateAuthToken();
     console.log(token)
     // Set token in HTTP-only cookie for added security
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Use secure in production
-      sameSite: "strict",
+      secure: isProduction, // Use secure in production
+      sameSite: isProduction ? "none" : "lax",
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
     });
 
